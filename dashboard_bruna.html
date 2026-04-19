@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Análise Vocacional · Bruna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ==========================================================
+   TOKENS & RESET
+   ========================================================== */
+:root{
+  /* Paleta base */
+  --c-bone:        #D7D7D9;
+  --c-sand:        #A69981;
+  --c-bronze:      #735736;
+  --c-umber:       #402A17;
+  --c-ink:         #261817;
+
+  /* Tokens semânticos */
+  --bg:            #D7D7D9;
+  --bg-warm:       #CFCCC2;
+  --surface:       #EDEBE5;
+  --surface-2:     #E3DFD4;
+  --surface-3:     #DAD4C5;
+  --text:          #261817;
+  --text-soft:     #5B4632;
+  --text-muted:    #8A7A62;
+  --accent:        #735736;
+  --accent-2:      #402A17;
+  --accent-soft:   #A69981;
+  --border:        rgba(38,24,23,0.12);
+  --border-strong: rgba(38,24,23,0.22);
+  --shadow-sm:     0 1px 2px rgba(38,24,23,0.04), 0 2px 6px rgba(38,24,23,0.04);
+  --shadow-md:     0 4px 14px rgba(38,24,23,0.06), 0 12px 36px rgba(38,24,23,0.06);
+  --shadow-lg:     0 8px 28px rgba(38,24,23,0.10), 0 24px 60px rgba(38,24,23,0.10);
+
+  --radius-sm:     10px;
+  --radius:        16px;
+  --radius-lg:     22px;
+  --radius-xl:     28px;
+
+  --ease:          cubic-bezier(.2,.7,.2,1);
+  --ease-snap:     cubic-bezier(.2,.9,.3,1.2);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  font-family:"Inter",system-ui,sans-serif;
+  font-feature-settings:"ss01","cv11";
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  letter-spacing:-0.005em;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(64,42,23,0.22);border-radius:10px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(64,42,23,0.4);background-clip:padding-box;border:2px solid transparent}
+
+/* ==========================================================
+   LAYOUT BASE
+   ========================================================== */
+.container{
+  width:100%;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 28px;
+}
+.section{
+  padding:72px 0 40px;
+  scroll-margin-top:96px;
+}
+.section-header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:36px;
+  flex-wrap:wrap;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+.eyebrow::before{
+  content:"";width:24px;height:1px;background:var(--accent);
+}
+.section-title{
+  font-size:clamp(30px,4vw,46px);
+  line-height:1.05;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  margin:0;
+}
+.section-title em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--accent);
+}
+.section-sub{
+  margin-top:10px;
+  font-size:15px;
+  color:var(--text-soft);
+  max-width:620px;
+}
+
+/* ==========================================================
+   NAV STICKY
+   ========================================================== */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:90;
+  backdrop-filter:blur(18px) saturate(1.1);
+  -webkit-backdrop-filter:blur(18px) saturate(1.1);
+  background:rgba(215,215,217,0.75);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow .3s var(--ease);
+}
+.nav.scrolled{box-shadow:0 10px 30px -18px rgba(38,24,23,0.25)}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 28px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:700;
+  letter-spacing:-0.01em;
+}
+.brand-mark{
+  width:36px;height:36px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));
+  color:#F4EFE5;
+  display:grid;place-items:center;
+  font-size:13px;font-weight:700;
+  letter-spacing:.02em;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15), 0 6px 14px -6px rgba(64,42,23,0.5);
+}
+.brand-text{font-size:14px}
+.brand-text small{display:block;font-size:10.5px;font-weight:500;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:1px}
+
+.nav-tabs{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  flex:1;
+  justify-content:center;
+  padding:0 6px;
+}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{
+  position:relative;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-soft);
+  border-radius:999px;
+  white-space:nowrap;
+  transition:color .25s var(--ease), background .25s var(--ease);
+}
+.nav-tab:hover{color:var(--text);background:rgba(115,87,54,0.08)}
+.nav-tab.active{
+  color:#F4EFE5;
+  background:var(--accent-2);
+}
+.nav-toggle{
+  display:none;
+  width:40px;height:40px;
+  border-radius:12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  align-items:center;justify-content:center;
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+.hero{
+  position:relative;
+  padding:68px 0 80px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(1200px 500px at 10% -10%,rgba(115,87,54,0.15),transparent 60%),
+    radial-gradient(900px 400px at 100% 0%,rgba(166,153,129,0.35),transparent 55%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.25fr 1fr;
+  gap:56px;
+  align-items:center;
+}
+.hero-main{position:relative}
+.hero-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 14px 6px 6px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:12px;
+  color:var(--text-soft);
+  margin-bottom:24px;
+  box-shadow:var(--shadow-sm);
+}
+.hero-kicker .dot{
+  width:22px;height:22px;
+  border-radius:50%;
+  background:var(--accent);
+  display:grid;place-items:center;
+  color:#F4EFE5;
+}
+.hero-kicker strong{color:var(--text);font-weight:600}
+.hero-name{
+  font-size:clamp(54px,8vw,96px);
+  line-height:0.95;
+  font-weight:700;
+  letter-spacing:-0.035em;
+  margin:0 0 6px;
+  color:var(--text);
+}
+.hero-name em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--accent);
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 18px;
+  font-size:14px;
+  color:var(--text-soft);
+  margin:8px 0 26px;
+  align-items:center;
+}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.hero-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--text-muted);display:inline-block}
+.hero-lede{
+  font-size:clamp(17px,1.6vw,20px);
+  line-height:1.5;
+  color:var(--text);
+  max-width:640px;
+  margin:0 0 30px;
+  font-weight:400;
+  letter-spacing:-0.005em;
+}
+.hero-lede em{font-style:italic;color:var(--accent-2)}
+
+.hero-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:28px;
+}
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:12.5px;
+  font-weight:500;
+  color:var(--text);
+  transition:all .25s var(--ease);
+}
+.chip:hover{background:var(--surface-2);border-color:var(--border-strong);transform:translateY(-1px)}
+.chip svg{width:14px;height:14px;color:var(--accent)}
+
+.hero-metrics{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  max-width:560px;
+}
+.metric{
+  padding:18px 20px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:all .3s var(--ease);
+}
+.metric:hover{background:var(--surface-2);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.metric-label{
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:6px;
+}
+.metric-value{
+  font-size:15px;
+  font-weight:600;
+  color:var(--text);
+  line-height:1.35;
+  letter-spacing:-0.01em;
+}
+
+/* Hero aside - composition card */
+.hero-aside{
+  position:relative;
+}
+.portrait{
+  position:relative;
+  background:linear-gradient(180deg,var(--surface) 0%, var(--surface-2) 100%);
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  padding:32px;
+  box-shadow:var(--shadow-lg);
+}
+.portrait::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:var(--radius-xl);
+  background:linear-gradient(135deg,rgba(115,87,54,0.3),transparent 40%, rgba(166,153,129,0.25));
+  z-index:-1;
+  filter:blur(20px);
+  opacity:.5;
+}
+.portrait-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:24px;
+}
+.portrait-label{
+  font-size:10.5px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:600;
+}
+.portrait-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;
+  background:var(--accent-2);
+  color:#F4EFE5;
+  border-radius:999px;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.portrait-headline{
+  font-size:22px;
+  line-height:1.25;
+  font-weight:600;
+  letter-spacing:-0.015em;
+  margin:0 0 18px;
+}
+.portrait-headline em{color:var(--accent);font-style:italic;font-weight:400}
+.portrait-divider{
+  height:1px;
+  background:var(--border);
+  margin:18px 0;
+}
+.portrait-list{
+  display:grid;
+  gap:12px;
+}
+.portrait-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.portrait-item .ico{
+  width:32px;height:32px;
+  border-radius:10px;
+  background:var(--surface-3);
+  display:grid;place-items:center;
+  color:var(--accent-2);
+  flex-shrink:0;
+}
+.portrait-item .ico svg{width:16px;height:16px}
+.portrait-item-title{
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:600;
+  margin-bottom:2px;
+}
+.portrait-item-value{font-size:13.5px;font-weight:500;color:var(--text);line-height:1.35}
+
+/* ==========================================================
+   PROFILE SECTION
+   ========================================================== */
+.profile-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:24px;
+}
+.narrative{
+  background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:38px;
+  position:relative;
+  overflow:hidden;
+}
+.narrative::after{
+  content:"";
+  position:absolute;
+  top:24px;right:24px;
+  width:52px;height:52px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23735736' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 11L8 17M16 11L14 17M7 7h.01M17 7h.01'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity:0.35;
+}
+.narrative-eyebrow{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:600;color:var(--accent);margin-bottom:14px;
+}
+.narrative h3{
+  font-size:26px;
+  line-height:1.2;
+  font-weight:600;
+  letter-spacing:-0.015em;
+  margin:0 0 18px;
+}
+.narrative h3 em{color:var(--accent);font-style:italic;font-weight:400}
+.narrative p{
+  font-size:15px;
+  line-height:1.65;
+  color:var(--text-soft);
+  margin:0 0 14px;
+}
+.narrative p:last-child{margin-bottom:0}
+.narrative p strong{color:var(--text);font-weight:600}
+
+.profile-side{
+  display:grid;
+  gap:14px;
+  grid-template-rows:auto auto;
+}
+.mini-stack{
+  display:grid;
+  gap:14px;
+}
+.mini{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  transition:all .3s var(--ease);
+}
+.mini:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);background:var(--surface-2)}
+.mini-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.mini-ico{
+  width:34px;height:34px;
+  border-radius:10px;
+  background:var(--surface-3);
+  display:grid;place-items:center;
+  color:var(--accent-2);
+}
+.mini-ico svg{width:17px;height:17px}
+.mini-title{
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:0.04em;
+  color:var(--text);
+}
+.mini ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.mini li{
+  position:relative;
+  padding-left:18px;
+  font-size:13.5px;
+  color:var(--text-soft);
+  line-height:1.45;
+}
+.mini li::before{
+  content:"•";
+  position:absolute;
+  left:0;top:0;
+  width:auto;height:auto;
+  background:transparent;
+  color:var(--accent);
+  font-size:14px;
+  line-height:1.45;
+}
+
+/* Profile cards full grid */
+.cards-profile{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;
+}
+
+/* ==========================================================
+   VOCATIONAL READING
+   ========================================================== */
+.vocational-grid{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:24px;
+}
+.radar-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:32px;
+  position:relative;
+}
+.radar-wrap{
+  aspect-ratio:1/1;
+  max-width:440px;
+  margin:0 auto;
+  position:relative;
+}
+.radar-wrap svg{width:100%;height:100%}
+.radar-legend{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 14px;
+  margin-top:18px;
+  padding-top:22px;
+  border-top:1px solid var(--border);
+}
+.radar-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12.5px;
+  color:var(--text-soft);
+}
+.radar-item .bar{
+  flex:1;
+  height:4px;
+  background:var(--surface-3);
+  border-radius:4px;
+  overflow:hidden;
+  position:relative;
+}
+.radar-item .bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--accent-soft),var(--accent));
+  border-radius:4px;
+}
+.radar-item b{font-weight:600;color:var(--text);min-width:30px;text-align:right;font-size:12px}
+
+.vocational-side{
+  display:grid;
+  gap:14px;
+}
+.voc-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 24px;
+}
+.voc-block.primary{
+  background:var(--accent-2);
+  color:#F4EFE5;
+  border-color:transparent;
+}
+.voc-block.primary .voc-head{color:rgba(244,239,229,0.7)}
+.voc-block.primary ul li{color:rgba(244,239,229,0.88)}
+.voc-block.primary ul li::before{background:var(--c-sand)}
+.voc-head{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:12px;
+}
+.voc-head svg{width:14px;height:14px}
+.voc-block ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.voc-block li{
+  position:relative;padding-left:18px;font-size:13.5px;line-height:1.5;
+}
+.voc-block li::before{
+  content:"•";position:absolute;left:0;top:0;width:auto;height:auto;background:transparent;color:var(--accent);font-size:14px;line-height:1.5;
+}
+.voc-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.voc-pills span{
+  font-size:11.5px;padding:5px 11px;border-radius:999px;
+  background:rgba(244,239,229,0.12);border:1px solid rgba(244,239,229,0.2);
+  color:#F4EFE5;font-weight:500;
+}
+
+/* ==========================================================
+   FILTER BAR
+   ========================================================== */
+.filter-bar{
+  position:sticky;top:73px;z-index:40;
+  background:rgba(215,215,217,0.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px 18px;
+  margin-bottom:26px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+  box-shadow:var(--shadow-sm);
+}
+.filter-search{
+  position:relative;
+  flex:1;
+  min-width:220px;
+}
+.filter-search input{
+  width:100%;
+  padding:10px 14px 10px 38px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:13.5px;
+  background:var(--surface);
+  color:var(--text);
+  font-family:inherit;
+  transition:all .25s var(--ease);
+  outline:none;
+}
+.filter-search input::placeholder{color:var(--text-muted)}
+.filter-search input:focus{border-color:var(--accent);background:#F4EFE5;box-shadow:0 0 0 3px rgba(115,87,54,0.12)}
+.filter-search svg{
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;color:var(--text-muted);pointer-events:none;
+}
+.filter-group{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.filter-group-label{
+  font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-muted);padding:0 4px 0 0;
+}
+.filter-chip{
+  padding:6px 12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:12px;font-weight:500;color:var(--text-soft);
+  transition:all .2s var(--ease);
+}
+.filter-chip:hover{border-color:var(--border-strong);color:var(--text)}
+.filter-chip.active{
+  background:var(--accent-2);color:#F4EFE5;border-color:var(--accent-2);
+}
+.filter-reset{
+  padding:6px 12px;
+  font-size:12px;
+  color:var(--text-muted);
+  font-weight:500;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.filter-reset:hover{color:var(--accent)}
+.filter-reset svg{width:13px;height:13px}
+
+/* ==========================================================
+   CARDS — CARREIRAS/PROJETOS
+   ========================================================== */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:16px;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:26px;
+  position:relative;
+  transition:all .35s var(--ease);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+  border-color:var(--border-strong);
+}
+.card.expanded{
+  background:linear-gradient(180deg,var(--surface) 0%, var(--surface-2) 100%);
+  box-shadow:var(--shadow-lg);
+  border-color:var(--accent);
+}
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+}
+.card-num{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.15em;
+  color:var(--text-muted);
+}
+.card-title{
+  font-size:19px;
+  font-weight:600;
+  line-height:1.3;
+  letter-spacing:-0.015em;
+  color:var(--text);
+  margin:6px 0 0;
+}
+.card-compare{
+  width:30px;height:30px;
+  border-radius:8px;
+  background:var(--surface-3);
+  display:grid;place-items:center;
+  color:var(--accent-2);
+  transition:all .25s var(--ease);
+  flex-shrink:0;
+}
+.card-compare svg{width:15px;height:15px}
+.card-compare:hover{background:var(--accent);color:#F4EFE5}
+.card-compare.selected{background:var(--accent-2);color:#F4EFE5}
+
+.card-reason{
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--text-soft);
+}
+
+.card-meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px 18px;
+}
+.meta-item{display:flex;flex-direction:column;gap:2px}
+.meta-label{
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:600;
+}
+.meta-value{
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--text);
+}
+
+.card-bar{
+  display:flex;align-items:center;gap:10px;
+}
+.card-bar-label{font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);min-width:68px}
+.card-bar-track{
+  flex:1;
+  height:6px;
+  background:var(--surface-3);
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+}
+.card-bar-fill{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--accent-soft),var(--accent-2));
+  border-radius:6px;
+  transform-origin:left;
+  animation:growBar .9s var(--ease) both;
+}
+@keyframes growBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.card-bar-num{font-size:11.5px;font-weight:600;color:var(--text);min-width:26px;text-align:right}
+
+.card-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{
+  padding:4px 10px;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:0.04em;
+  border-radius:999px;
+  display:inline-flex;align-items:center;gap:4px;
+  text-transform:lowercase;
+}
+.tag.risk-baixo,.tag.risk-baixo-medio{background:#EDE6C8;color:#5B5413}
+.tag.risk-medio{background:#E3D4BC;color:#6B4D1A}
+.tag.risk-medio-alto,.tag.risk-alto{background:#D9B89A;color:#4E2A0F}
+.tag.cost-baixo,.tag.cost-muito-baixo{background:#E5E4DC;color:#3E4432}
+.tag.cost-medio,.tag.cost-baixo-medio{background:#D8CBB0;color:#4F3A17}
+.tag.cost-medio-alto,.tag.cost-alto{background:#C9A985;color:#2E1C08}
+
+.card-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+  margin-top:auto;
+}
+.card-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--accent);
+  padding:4px 0;
+  letter-spacing:0.02em;
+}
+.card-toggle svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.card.expanded .card-toggle svg{transform:rotate(180deg)}
+.card-category{
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+.card-detail{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .5s var(--ease), padding .4s var(--ease), margin .4s var(--ease);
+  margin-top:0;
+}
+.card.expanded .card-detail{
+  max-height:1200px;
+  margin-top:-4px;
+}
+.card-detail-inner{
+  padding-top:16px;
+  border-top:1px dashed var(--border);
+  display:grid;
+  gap:16px;
+}
+.detail-block h5{
+  font-size:10.5px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent);
+  margin:0 0 8px;
+  display:flex;align-items:center;gap:6px;
+}
+.detail-block h5 svg{width:12px;height:12px}
+.detail-block p{
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--text-soft);
+  margin:0;
+}
+.detail-steps{margin:0;padding:0;list-style:none;counter-reset:step;display:grid;gap:8px}
+.detail-steps li{
+  position:relative;
+  padding-left:32px;
+  font-size:13.5px;
+  color:var(--text-soft);
+  line-height:1.5;
+  counter-increment:step;
+}
+.detail-steps li::before{
+  content:counter(step);
+  position:absolute;
+  left:0;top:0;
+  width:22px;height:22px;
+  background:var(--accent-2);
+  color:#F4EFE5;
+  border-radius:50%;
+  display:grid;place-items:center;
+  font-size:11px;font-weight:700;
+}
+
+/* faixa removida */
+.card.bold{
+  background:linear-gradient(135deg,var(--c-umber) 0%, var(--c-ink) 100%);
+  color:#F4EFE5;
+  border-color:transparent;
+}
+.card.bold .card-title{color:#F4EFE5}
+.card.bold .card-reason{color:rgba(244,239,229,0.8)}
+.card.bold .meta-label{color:rgba(244,239,229,0.5)}
+.card.bold .meta-value{color:#F4EFE5}
+.card.bold .card-num{color:rgba(244,239,229,0.5)}
+.card.bold .card-category{color:rgba(244,239,229,0.55)}
+.card.bold .card-footer{border-top-color:rgba(244,239,229,0.15)}
+.card.bold .card-toggle{color:var(--c-sand)}
+.card.bold .card-compare{background:rgba(244,239,229,0.08);color:#F4EFE5}
+.card.bold .detail-block p{color:rgba(244,239,229,0.78)}
+.card.bold .detail-block h5{color:var(--c-sand)}
+.card.bold .detail-steps li{color:rgba(244,239,229,0.78)}
+
+/* ==========================================================
+   RANKING
+   ========================================================== */
+.rank-list{
+  display:grid;
+  gap:10px;
+}
+.rank-row{
+  display:grid;
+  grid-template-columns:70px 1.6fr 1fr 1.4fr auto;
+  gap:22px;
+  align-items:center;
+  padding:22px 26px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:all .3s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.rank-row:hover{
+  background:var(--surface-2);
+  transform:translateX(4px);
+  border-color:var(--border-strong);
+}
+.rank-row:first-child{
+  background:linear-gradient(135deg,var(--c-umber),var(--c-ink));
+  color:#F4EFE5;
+  border-color:transparent;
+}
+.rank-row:first-child:hover{background:linear-gradient(135deg,var(--c-ink),var(--c-umber))}
+.rank-row:first-child .rank-pos{color:var(--c-sand)}
+.rank-row:first-child .rank-name{color:#F4EFE5}
+.rank-row:first-child .rank-cat{color:rgba(244,239,229,0.55)}
+.rank-row:first-child .rank-why{color:rgba(244,239,229,0.8)}
+.rank-row:first-child .score-label{color:rgba(244,239,229,0.5)}
+.rank-row:first-child .score-num{color:#F4EFE5}
+.rank-row:first-child .score-track{background:rgba(244,239,229,0.12)}
+.rank-pos{
+  font-size:42px;
+  font-weight:700;
+  letter-spacing:-0.03em;
+  color:var(--accent);
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.rank-main .rank-cat{
+  font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text-muted);font-weight:600;margin-bottom:4px;
+}
+.rank-main .rank-name{
+  font-size:17px;font-weight:600;line-height:1.3;letter-spacing:-0.012em;
+  color:var(--text);
+}
+.rank-why{
+  font-size:13px;line-height:1.5;color:var(--text-soft);
+}
+.rank-scores{display:grid;gap:6px;min-width:150px}
+.score-row{display:flex;align-items:center;gap:10px;font-size:11px}
+.score-label{min-width:54px;color:var(--text-muted);font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
+.score-track{
+  flex:1;height:4px;background:var(--surface-3);border-radius:4px;overflow:hidden;
+}
+.score-fill{
+  display:block;height:100%;
+  background:var(--accent);border-radius:4px;
+  animation:growBar 1s var(--ease) both;
+}
+.score-num{font-weight:600;color:var(--text);min-width:22px;text-align:right;font-size:11px;font-variant-numeric:tabular-nums}
+.rank-arrow{
+  width:40px;height:40px;
+  border-radius:12px;
+  background:var(--surface-3);
+  display:grid;place-items:center;
+  color:var(--accent-2);
+  transition:all .25s var(--ease);
+}
+.rank-arrow:hover{background:var(--accent-2);color:#F4EFE5;transform:translateX(2px)}
+.rank-row:first-child .rank-arrow{background:rgba(244,239,229,0.1);color:#F4EFE5}
+
+/* ==========================================================
+   RECOMENDAÇÕES FINAIS
+   ========================================================== */
+.reco-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.reco-card{
+  position:relative;
+  padding:36px 32px;
+  border-radius:var(--radius-lg);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  min-height:420px;
+  overflow:hidden;
+  transition:all .4s var(--ease);
+}
+.reco-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.reco-card.conservative{
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+.reco-card.balanced{
+  background:linear-gradient(165deg,var(--c-umber) 0%, var(--c-ink) 100%);
+  color:#F4EFE5;
+  border:1px solid var(--c-umber);
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-lg);
+}
+.reco-card.balanced:hover{transform:translateY(-12px)}
+.reco-card.bold-path{
+  background:linear-gradient(165deg,var(--c-sand) 0%, var(--c-bronze) 100%);
+  color:#F4EFE5;
+  border:1px solid var(--c-bronze);
+}
+.reco-level{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;
+  opacity:0.7;
+}
+.reco-level .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.reco-priority{
+  display:flex;gap:3px;margin-left:auto;
+}
+.reco-priority i{
+  width:8px;height:8px;border-radius:50%;
+  background:currentColor;opacity:0.3;display:block;
+}
+.reco-priority i.on{opacity:1}
+.reco-head{
+  display:flex;justify-content:space-between;align-items:center;
+}
+.reco-title{
+  font-size:28px;line-height:1.15;
+  font-weight:600;letter-spacing:-0.02em;
+  margin:0;
+}
+.reco-title em{font-style:italic;font-weight:300;display:block}
+.reco-body{
+  font-size:14.5px;line-height:1.6;
+  opacity:0.85;
+  margin:0;
+  flex:1;
+}
+.reco-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 18px;
+  background:rgba(244,239,229,0.12);
+  border:1px solid rgba(244,239,229,0.2);
+  border-radius:999px;
+  font-size:13px;font-weight:600;
+  width:fit-content;
+  transition:all .25s var(--ease);
+}
+.reco-card.conservative .reco-cta{
+  background:var(--accent-2);color:#F4EFE5;border-color:var(--accent-2);
+}
+.reco-card.conservative .reco-cta:hover{background:var(--accent);border-color:var(--accent)}
+.reco-cta:hover{background:rgba(244,239,229,0.2);transform:translateX(3px)}
+.reco-cta svg{width:14px;height:14px;transition:transform .25s var(--ease)}
+.reco-cta:hover svg{transform:translateX(3px)}
+.reco-meta{
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  opacity:0.55;font-weight:600;
+  padding-top:16px;border-top:1px solid currentColor;border-color:rgba(244,239,229,0.2);
+}
+.reco-card.conservative .reco-meta{border-top-color:var(--border)}
+
+/* ==========================================================
+   COMPARE TRAY
+   ========================================================== */
+.compare-tray{
+  position:fixed;
+  bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(180%);
+  z-index:100;
+  background:var(--c-ink);
+  color:#F4EFE5;
+  border-radius:var(--radius-lg);
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  box-shadow:0 16px 48px rgba(38,24,23,0.35);
+  transition:transform .45s var(--ease-snap);
+  max-width:min(90vw,720px);
+  flex-wrap:wrap;
+}
+.compare-tray.open{transform:translateX(-50%) translateY(0)}
+.compare-tray-info{font-size:12px;color:rgba(244,239,229,0.7);letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+.compare-tray-items{display:flex;gap:8px;flex-wrap:wrap}
+.compare-item{
+  background:rgba(244,239,229,0.1);
+  border:1px solid rgba(244,239,229,0.2);
+  padding:6px 10px 6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  display:flex;align-items:center;gap:6px;
+  max-width:200px;
+}
+.compare-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compare-item button{
+  background:rgba(244,239,229,0.15);
+  width:18px;height:18px;border-radius:50%;
+  display:grid;place-items:center;
+  color:#F4EFE5;
+}
+.compare-item button svg{width:10px;height:10px}
+.compare-action{
+  margin-left:auto;
+  padding:10px 18px;
+  background:var(--c-sand);
+  color:var(--c-ink);
+  border-radius:999px;
+  font-weight:600;font-size:13px;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all .25s var(--ease);
+}
+.compare-action:hover{background:#c3b89a;transform:translateY(-1px)}
+.compare-action svg{width:14px;height:14px}
+.compare-clear{
+  background:transparent;color:rgba(244,239,229,0.6);font-size:12px;
+  padding:4px 8px;
+}
+.compare-clear:hover{color:#F4EFE5}
+
+/* ==========================================================
+   COMPARE MODAL
+   ========================================================== */
+.modal{
+  position:fixed;inset:0;
+  z-index:200;
+  background:rgba(38,24,23,0.55);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s var(--ease);
+}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-dialog{
+  background:var(--bg);
+  border-radius:var(--radius-xl);
+  max-width:1100px;
+  width:100%;
+  max-height:92vh;
+  overflow:auto;
+  box-shadow:var(--shadow-lg);
+  transform:translateY(20px) scale(0.96);
+  transition:transform .45s var(--ease-snap);
+  padding:36px;
+}
+.modal.open .modal-dialog{transform:translateY(0) scale(1)}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
+  margin-bottom:28px;padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+.modal-head h3{font-size:28px;font-weight:600;letter-spacing:-0.02em;margin:0}
+.modal-close{
+  width:40px;height:40px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);
+  display:grid;place-items:center;color:var(--text);
+  transition:all .25s var(--ease);flex-shrink:0;
+}
+.modal-close:hover{background:var(--accent-2);color:#F4EFE5;border-color:var(--accent-2)}
+.modal-close svg{width:17px;height:17px}
+.compare-table{
+  display:grid;
+  gap:2px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.compare-table .row{
+  display:grid;
+  background:var(--bg);
+  padding:14px 18px;
+  gap:16px;
+  align-items:center;
+}
+.compare-table .row.head{
+  background:var(--surface-2);
+  font-weight:700;
+}
+.compare-table .row .cell{font-size:13px;line-height:1.45}
+.compare-table .row .cell.label{
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+.compare-table .row.head .cell{
+  font-size:15px;font-weight:600;letter-spacing:-0.01em;color:var(--text);
+}
+.compare-score{
+  display:flex;align-items:center;gap:8px;
+}
+.compare-score .bar{flex:1;height:5px;background:var(--surface-3);border-radius:5px;overflow:hidden}
+.compare-score .bar i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.compare-score b{font-size:12px;min-width:24px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.footer{
+  padding:60px 0 44px;
+  margin-top:60px;
+  border-top:1px solid var(--border);
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-text{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.65;
+  max-width:520px;
+}
+.footer-note{
+  font-size:11px;
+  color:var(--text-muted);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+/* ==========================================================
+   REVEAL ANIMATIONS
+   ========================================================== */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+[data-reveal].in{opacity:1;transform:none}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .profile-grid{grid-template-columns:1fr}
+  .vocational-grid{grid-template-columns:1fr}
+  .reco-grid{grid-template-columns:1fr}
+  .reco-card.balanced{transform:none}
+  .reco-card.balanced:hover{transform:translateY(-4px)}
+  .rank-row{grid-template-columns:60px 1.4fr 1fr auto;gap:16px}
+  .rank-why{display:none}
+  .rank-pos{font-size:34px}
+}
+@media (max-width:760px){
+  .container{padding:0 18px}
+  .section{padding:54px 0 28px}
+  .nav-inner{padding:12px 18px}
+  .nav-tabs{display:none}
+  .nav-toggle{display:flex}
+  .nav.mobile-open .nav-tabs{
+    display:flex;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;background:var(--bg);padding:14px 18px;
+    border-bottom:1px solid var(--border);gap:2px;
+    max-height:70vh;overflow-y:auto;
+  }
+  .nav.mobile-open .nav-tab{justify-content:flex-start;width:100%}
+  .hero{padding:44px 0 60px}
+  .hero-metrics{grid-template-columns:1fr}
+  .section-header{flex-direction:column;align-items:flex-start}
+  .cards-grid{grid-template-columns:1fr}
+  .rank-row{grid-template-columns:50px 1fr auto;gap:14px;padding:18px}
+  .rank-scores{display:none}
+  .rank-pos{font-size:28px}
+  .filter-bar{position:static;padding:14px}
+  .filter-group{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+  .filter-group-label{flex-shrink:0}
+  .filter-chip{flex-shrink:0}
+  .modal-dialog{padding:22px}
+  .compare-table{font-size:12px}
+  .compare-table .row{grid-template-columns:1fr !important}
+  .compare-tray{left:12px;right:12px;transform:translateX(0) translateY(180%);max-width:none}
+  .compare-tray.open{transform:translateX(0) translateY(0)}
+  .compare-action{margin-left:0;width:100%;justify-content:center}
+  .card{padding:22px}
+  .narrative{padding:28px}
+}
+@media (max-width:480px){
+  .hero-name{font-size:48px}
+  .card-meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">AV</div>
+      <div class="brand-text">
+        Análise Vocacional
+        <small>Bruna · Consolidada</small>
+      </div>
+    </div>
+    <div class="nav-tabs" id="navTabs">
+      <a class="nav-tab active" data-target="hero">Visão Geral</a>
+      <a class="nav-tab" data-target="perfil">Perfil</a>
+      <a class="nav-tab" data-target="leitura">Leitura Vocacional</a>
+      <a class="nav-tab" data-target="zero">Do Zero</a>
+      <a class="nav-tab" data-target="historico">Com Histórico</a>
+      <a class="nav-tab" data-target="pessoais">Pessoais</a>
+      <a class="nav-tab" data-target="renda">Com Renda</a>
+      <a class="nav-tab" data-target="ousadas">Ousadas</a>
+      <a class="nav-tab" data-target="ranking">Ranking</a>
+      <a class="nav-tab" data-target="reco">Recomendação</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir navegação">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <div class="hero-kicker" data-reveal>
+          <span class="dot"><i data-lucide="sparkles" style="width:12px;height:12px"></i></span>
+          <span>Leitura consolidada &nbsp;·&nbsp; <strong>análise vocacional integral</strong></span>
+        </div>
+        <h1 class="hero-name" data-reveal>Bruna</h1>
+        <div class="hero-meta" data-reveal>
+          <span><i data-lucide="cake" style="width:14px;height:14px;color:var(--accent)"></i> 31 anos</span>
+          <span class="sep"></span>
+          <span><i data-lucide="briefcase" style="width:14px;height:14px;color:var(--accent)"></i> Administração de imóveis</span>
+          <span class="sep"></span>
+          <span><i data-lucide="graduation-cap" style="width:14px;height:14px;color:var(--accent)"></i> Comunicação Organizacional</span>
+        </div>
+        <p class="hero-lede" data-reveal>
+          Pessoa profundamente relacional, contemplativa e sensível, com <em>forte inclinação ao cuidado</em>, à escuta e à criação de experiências humanas significativas.
+        </p>
+
+        <div class="hero-chips" data-reveal>
+          <span class="chip"><i data-lucide="heart-handshake"></i> Relacional</span>
+          <span class="chip"><i data-lucide="moon-star"></i> Contemplativa</span>
+          <span class="chip"><i data-lucide="mic"></i> Comunicadora</span>
+          <span class="chip"><i data-lucide="hand-heart"></i> Cuidadora</span>
+          <span class="chip"><i data-lucide="home"></i> Acolhedora</span>
+          <span class="chip"><i data-lucide="book-open"></i> Híbrida</span>
+        </div>
+
+        <div class="hero-metrics" data-reveal>
+          <div class="metric">
+            <div class="metric-label">Perfil predominante</div>
+            <div class="metric-value">Relacional · cuidadora · contemplativa · comunicadora</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Eixo vocacional</div>
+            <div class="metric-value">Comunicação + cuidado + experiência humana</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Ambiente ideal</div>
+            <div class="metric-value">Equipes pequenas, propósito claro, hospitalidade</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Maior alerta</div>
+            <div class="metric-value">Evitar rotinas numéricas, frias, aceleradas ou solitárias</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-aside" data-reveal>
+        <div class="portrait">
+          <div class="portrait-top">
+            <span class="portrait-label">Carta de identidade</span>
+            <span class="portrait-badge"><i data-lucide="check" style="width:10px;height:10px"></i> Consolidada</span>
+          </div>
+          <h2 class="portrait-headline">
+            Florescer em contextos de <em>presença, vínculo e profundidade</em> — não em pressão ou pressa.
+          </h2>
+          <div class="portrait-divider"></div>
+          <div class="portrait-list">
+            <div class="portrait-item">
+              <div class="ico"><i data-lucide="zap"></i></div>
+              <div>
+                <div class="portrait-item-title">Energiza</div>
+                <div class="portrait-item-value">Escuta, acolhimento, ambiência, propósito e vínculo humano real</div>
+              </div>
+            </div>
+            <div class="portrait-item">
+              <div class="ico"><i data-lucide="battery-low"></i></div>
+              <div>
+                <div class="portrait-item-title">Drena</div>
+                <div class="portrait-item-value">Pressão constante, pressa, solidão profissional e tarefas numéricas</div>
+              </div>
+            </div>
+            <div class="portrait-item">
+              <div class="ico"><i data-lucide="compass"></i></div>
+              <div>
+                <div class="portrait-item-title">Direção</div>
+                <div class="portrait-item-value">Comunicação humana, hospitalidade, formação, cuidado e bem-estar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PERFIL ============ -->
+<section class="section" id="perfil">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>01</strong> — Resumo do perfil</div>
+        <h2 class="section-title">Quem é Bruna <em>por dentro</em></h2>
+        <p class="section-sub">Um retrato integrado dos interesses, forças, motivações, ambientes preferidos e atividades com maior aderência — tudo derivado do material original.</p>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <article class="narrative" data-reveal>
+        <div class="narrative-eyebrow">Retrato narrativo</div>
+        <h3>Uma identidade que não se esgota na <em>função atual</em>.</h3>
+        <p>Embora hoje trabalhe com <strong>administração de imóveis</strong>, sua trajetória mostra uma base em Comunicação Organizacional, uma experiência prática no setor e, por muitos anos, um vínculo muito forte com o teatro — que funcionava como fonte de energia, expressão e sentido.</p>
+        <p>Ela está num momento real de <strong>transição interna</strong>. Já não deseja reorganizar a vida em torno da carreira artística, mesmo preservando respeito pelo que o teatro representou. O que mais salta aos olhos é que ela tende a florescer em contextos de presença, vínculo, profundidade, acolhimento e propósito.</p>
+        <p>Em contraste, pressão, pressa, cobrança constante, solidão profissional e tarefas numéricas a drenam bastante. Isso aponta para caminhos mais promissores em <strong>comunicação humana, hospitalidade, experiência do cliente, formação, cuidado, espiritualidade e bem-estar</strong>.</p>
+      </article>
+
+      <div class="profile-side">
+        <div class="mini-stack">
+          <div class="mini" data-reveal>
+            <div class="mini-head">
+              <div class="mini-ico"><i data-lucide="heart"></i></div>
+              <div class="mini-title">Interesses percebidos</div>
+            </div>
+            <ul>
+              <li>Movimento corporal, bem-estar e consciência do corpo</li>
+              <li>Escrita, reflexão e organização de pensamentos</li>
+              <li>Conversas profundas, escuta e vulnerabilidade segura</li>
+              <li>Comunicação com sentido e ambientes acolhedores</li>
+              <li>Fé cristã, serviço e possibilidade ministerial</li>
+            </ul>
+          </div>
+          <div class="mini" data-reveal>
+            <div class="mini-head">
+              <div class="mini-ico"><i data-lucide="gem"></i></div>
+              <div class="mini-title">Forças percebidas</div>
+            </div>
+            <ul>
+              <li>Escuta atenta e acolhimento</li>
+              <li>Sensibilidade relacional e leitura humana</li>
+              <li>Capacidade de organizar ideias e dar clareza</li>
+              <li>Percepção de ambiente, experiência e bem-estar</li>
+              <li>Busca consistente por coerência, propósito e verdade</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-profile">
+      <div class="mini" data-reveal>
+        <div class="mini-head">
+          <div class="mini-ico"><i data-lucide="flame"></i></div>
+          <div class="mini-title">Motivações centrais</div>
+        </div>
+        <ul>
+          <li>Sentir que o trabalho tem significado real</li>
+          <li>Servir pessoas de forma concreta e cuidadosa</li>
+          <li>Viver coerência entre fé, trabalho e vida</li>
+          <li>Participar de contextos humanos e edificantes</li>
+          <li>Trabalhar sem violentar o próprio ritmo interno</li>
+        </ul>
+      </div>
+      <div class="mini" data-reveal>
+        <div class="mini-head">
+          <div class="mini-ico"><i data-lucide="map-pin-house"></i></div>
+          <div class="mini-title">Ambientes que combinam</div>
+        </div>
+        <ul>
+          <li>Equipes pequenas e colaborativas</li>
+          <li>Organizações com propósito claro</li>
+          <li>Contextos de hospitalidade, educação, igreja ou comunidade</li>
+          <li>Espaços com estética, conforto e boa ambiência</li>
+          <li>Rotinas menos agressivas e mais humanas</li>
+        </ul>
+      </div>
+      <div class="mini" data-reveal>
+        <div class="mini-head">
+          <div class="mini-ico"><i data-lucide="activity"></i></div>
+          <div class="mini-title">Atividades com maior aderência</div>
+        </div>
+        <ul>
+          <li>Acolher, ouvir, orientar e acompanhar</li>
+          <li>Organizar experiências para pessoas</li>
+          <li>Comunicar com sensibilidade e intenção</li>
+          <li>Escrever, estruturar e facilitar clareza</li>
+          <li>Cuidar do bem-estar e da jornada do outro</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEITURA VOCACIONAL ============ -->
+<section class="section" id="leitura">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>02</strong> — Leitura vocacional</div>
+        <h2 class="section-title">A bússola <em>por trás</em> das escolhas</h2>
+        <p class="section-sub">Um olhar analítico sobre áreas, formatos e vantagens já existentes — com atenção aos pontos que pedem cuidado consciente.</p>
+      </div>
+    </div>
+
+    <div class="vocational-grid">
+      <div class="radar-card" data-reveal>
+        <div class="voc-head"><i data-lucide="radar"></i> Perfil interpretativo do momento</div>
+        <div class="radar-wrap" id="radar"></div>
+        <p style="font-size:11.5px;color:var(--text-muted);text-align:center;margin-top:4px">Leitura visual interpretativa baseada no material do PDF, não um teste psicométrico.</p>
+        <div class="radar-legend" id="radarLegend"></div>
+      </div>
+
+      <div class="vocational-side">
+        <div class="voc-block primary" data-reveal>
+          <div class="voc-head"><i data-lucide="target"></i> Áreas com maior aderência</div>
+          <ul>
+            <li>Comunicação relacional e institucional</li>
+            <li>Experiência do cliente e hospitalidade</li>
+            <li>Facilitação de grupos, acolhimento e comunidade</li>
+            <li>Projetos de fé, formação e serviço</li>
+            <li>Bem-estar corporal e práticas de presença</li>
+          </ul>
+        </div>
+        <div class="voc-block" data-reveal>
+          <div class="voc-head"><i data-lucide="layers"></i> Formatos de trabalho promissores</div>
+          <ul>
+            <li>Times pequenos com contato humano real</li>
+            <li>Funções híbridas entre comunicação, cuidado e organização</li>
+            <li>Projetos com propósito perceptível</li>
+            <li>Trabalho com pessoas, grupos, experiências e jornadas</li>
+            <li>Atuações em parceria, não em isolamento</li>
+          </ul>
+        </div>
+        <div class="voc-block" data-reveal>
+          <div class="voc-head"><i data-lucide="award"></i> Vantagens competitivas já existentes</div>
+          <ul>
+            <li>Formação em Comunicação Organizacional</li>
+            <li>Experiência prática com administração de imóveis</li>
+            <li>Repertório de palco, presença e sensibilidade artística</li>
+            <li>Habilidade de escuta, acolhimento e organização</li>
+            <li>Clareza sobre o que energiza e o que drena</li>
+          </ul>
+        </div>
+        <div class="voc-block" data-reveal>
+          <div class="voc-head"><i data-lucide="alert-triangle"></i> Pontos de atenção</div>
+          <ul>
+            <li>Evitar carreiras excessivamente numéricas e operacionais</li>
+            <li>Evitar ambientes muito acelerados, frios ou pressionadores</li>
+            <li>Evitar funções extremamente solitárias</li>
+            <li>Não confundir vocação com antiga idealização de sucesso</li>
+            <li>Escolher caminhos em que propósito e sustentabilidade coexistam</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARREIRAS DO ZERO ============ -->
+<section class="section" id="zero">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>03</strong> — Carreiras do zero</div>
+        <h2 class="section-title">Começar do <em>zero</em>, mas com direção</h2>
+        <p class="section-sub">Sete direções profissionais que não dependem exclusivamente da trajetória anterior — priorizando comunicação, cuidado e vínculo humano.</p>
+      </div>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <div class="filter-search">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar por palavra-chave" data-search="zero" />
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Risco</span>
+        <button class="filter-chip active" data-filter="zero" data-key="risk" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="zero" data-key="risk" data-val="baixo">Baixo</button>
+        <button class="filter-chip" data-filter="zero" data-key="risk" data-val="medio">Médio</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Custo</span>
+        <button class="filter-chip active" data-filter="zero" data-key="cost" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="zero" data-key="cost" data-val="baixo">Baixo</button>
+        <button class="filter-chip" data-filter="zero" data-key="cost" data-val="medio">Médio</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Tempo</span>
+        <button class="filter-chip active" data-filter="zero" data-key="time" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="zero" data-key="time" data-val="curto">&lt; 6 meses</button>
+        <button class="filter-chip" data-filter="zero" data-key="time" data-val="medio">6-12 m</button>
+        <button class="filter-chip" data-filter="zero" data-key="time" data-val="longo">&gt; 12 m</button>
+      </div>
+      <button class="filter-reset" data-reset="zero"><i data-lucide="rotate-ccw"></i> Limpar</button>
+    </div>
+    <div class="cards-grid" id="grid-zero"></div>
+  </div>
+</section>
+
+<!-- ============ CARREIRAS COM HISTÓRICO ============ -->
+<section class="section" id="historico">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>04</strong> — Carreiras com histórico</div>
+        <h2 class="section-title">Aproveitando <em>o que já existe</em></h2>
+        <p class="section-sub">Sete caminhos que reaproveitam diretamente a formação, o histórico artístico, o trabalho atual ou o repertório relacional — sem exigir ruptura.</p>
+      </div>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <div class="filter-search">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar por palavra-chave" data-search="historico" />
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Risco</span>
+        <button class="filter-chip active" data-filter="historico" data-key="risk" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="historico" data-key="risk" data-val="baixo">Baixo</button>
+        <button class="filter-chip" data-filter="historico" data-key="risk" data-val="medio">Médio</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Custo</span>
+        <button class="filter-chip active" data-filter="historico" data-key="cost" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="historico" data-key="cost" data-val="baixo">Baixo</button>
+        <button class="filter-chip" data-filter="historico" data-key="cost" data-val="medio">Médio</button>
+        <button class="filter-chip" data-filter="historico" data-key="cost" data-val="alto">Médio-alto</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Tempo</span>
+        <button class="filter-chip active" data-filter="historico" data-key="time" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="historico" data-key="time" data-val="curto">&lt; 6 meses</button>
+        <button class="filter-chip" data-filter="historico" data-key="time" data-val="medio">6-12 m</button>
+        <button class="filter-chip" data-filter="historico" data-key="time" data-val="longo">&gt; 12 m</button>
+      </div>
+      <button class="filter-reset" data-reset="historico"><i data-lucide="rotate-ccw"></i> Limpar</button>
+    </div>
+    <div class="cards-grid" id="grid-historico"></div>
+  </div>
+</section>
+
+<!-- ============ PROJETOS PESSOAIS ============ -->
+<section class="section" id="pessoais">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>05</strong> — Projetos pessoais</div>
+        <h2 class="section-title">Para <em>satisfação</em> e clareza</h2>
+        <p class="section-sub">Sete projetos orientados a expressão, pertencimento e direção interna — mais do que a monetização imediata.</p>
+      </div>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <div class="filter-search">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar por palavra-chave" data-search="pessoais" />
+      </div>
+      <button class="filter-reset" data-reset="pessoais"><i data-lucide="rotate-ccw"></i> Limpar</button>
+    </div>
+    <div class="cards-grid" id="grid-pessoais"></div>
+  </div>
+</section>
+
+<!-- ============ PROJETOS COM RENDA ============ -->
+<section class="section" id="renda">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>06</strong> — Projetos com renda</div>
+        <h2 class="section-title">Ideias que podem se <em>sustentar financeiramente</em></h2>
+        <p class="section-sub">Oito projetos com potencial de monetização real — sem exigir, necessariamente, uma guinada total de carreira logo no começo.</p>
+      </div>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <div class="filter-search">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar por palavra-chave" data-search="renda" />
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Risco</span>
+        <button class="filter-chip active" data-filter="renda" data-key="risk" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="renda" data-key="risk" data-val="baixo">Baixo</button>
+        <button class="filter-chip" data-filter="renda" data-key="risk" data-val="medio">Médio</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-group-label">Custo</span>
+        <button class="filter-chip active" data-filter="renda" data-key="cost" data-val="all">Todos</button>
+        <button class="filter-chip" data-filter="renda" data-key="cost" data-val="baixo">Baixo</button>
+        <button class="filter-chip" data-filter="renda" data-key="cost" data-val="medio">Médio</button>
+      </div>
+      <button class="filter-reset" data-reset="renda"><i data-lucide="rotate-ccw"></i> Limpar</button>
+    </div>
+    <div class="cards-grid" id="grid-renda"></div>
+  </div>
+</section>
+
+<!-- ============ IDEIAS OUSADAS ============ -->
+<section class="section" id="ousadas">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>07</strong> — Ideias ousadas</div>
+        <h2 class="section-title">Movimentos <em>aspiracionais</em>, com discernimento</h2>
+        <p class="section-sub">Sete hipóteses mais ambiciosas ou menos convencionais — que fazem sentido, mas pedem teste gradual antes de se tornarem compromisso.</p>
+      </div>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <div class="filter-search">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar por palavra-chave" data-search="ousadas" />
+      </div>
+      <button class="filter-reset" data-reset="ousadas"><i data-lucide="rotate-ccw"></i> Limpar</button>
+    </div>
+    <div class="cards-grid" id="grid-ousadas"></div>
+  </div>
+</section>
+
+<!-- ============ RANKING ============ -->
+<section class="section" id="ranking">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>08</strong> — Ranking consolidado</div>
+        <h2 class="section-title">Top 10 <em>direções</em> ordenadas</h2>
+        <p class="section-sub">Ordem considerando aderência ao perfil, viabilidade prática e potencial de crescimento — conforme o documento consolidado.</p>
+      </div>
+    </div>
+    <div class="rank-list" id="rankList" data-reveal></div>
+  </div>
+</section>
+
+<!-- ============ RECOMENDAÇÃO ============ -->
+<section class="section" id="reco">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <div class="eyebrow"><strong>09</strong> — Recomendação estratégica</div>
+        <h2 class="section-title">Três <em>direções finais</em></h2>
+        <p class="section-sub">Síntese estratégica em três horizontes — um conservador, um equilibrado e um ousado — para permitir escolha consciente.</p>
+      </div>
+    </div>
+
+    <div class="reco-grid">
+      <article class="reco-card conservative" data-reveal>
+        <div class="reco-head">
+          <div class="reco-level"><span class="dot"></span> Conservador</div>
+          <div class="reco-priority"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <h3 class="reco-title">Coordenadora de experiência <em>em hospitalidade</em></h3>
+        <p class="reco-body">
+          É o caminho mais seguro. Parte de algo que ela já conhece, não exige ruptura brusca e permite reorganizar sua atuação para um lugar <strong>mais humano e menos centrado em números</strong>.
+        </p>
+        <a class="reco-cta" href="https://chatgpt.com/?q=Eu%20preciso%20que%20voc%C3%AA%20bole%20para%20mim%20um%20plano%20de%20como%20iniciar%20a%20seguinte%20carreira%3A%0A%0ACoordenadora%20de%20experi%C3%AAncia%20em%20hospitalidade%0A%0AO%20que%20%C3%A9%20essa%20carreira%3A%20Aproveita%20o%20trabalho%20atual%20com%20administra%C3%A7%C3%A3o%20de%20im%C3%B3veis%2C%20deslocando%20o%20foco%20da%20parte%20num%C3%A9rica%20para%20experi%C3%AAncia%2C%20acolhimento%20e%20jornada%20do%20h%C3%B3spede.%0A%0APor%20que%20faz%20sentido%3A%20%C3%89%20o%20caminho%20mais%20seguro.%20Parte%20de%20algo%20que%20ela%20j%C3%A1%20conhece%2C%20n%C3%A3o%20exige%20ruptura%20brusca%20e%20permite%20reorganizar%20a%20atua%C3%A7%C3%A3o%20para%20um%20lugar%20mais%20humano%20e%20menos%20centrado%20em%20n%C3%BAmeros.%0A%0AO%20que%20j%C3%A1%20existe%20a%20favor%3A%20Experi%C3%AAncia%20com%20administra%C3%A7%C3%A3o%20de%20im%C3%B3veis%20e%20entendimento%20da%20din%C3%A2mica%20do%20h%C3%B3spede.%0A%0APrincipal%20barreira%3A%20Redesenhar%20a%20fun%C3%A7%C3%A3o%20para%20que%20n%C3%A3o%20fique%20presa%20ao%20que%20mais%20drena%20%E2%80%94%20contas%2C%20planilhas%20e%20negocia%C3%A7%C3%A3o.%0A%0APrimeiros%20passos%20sugeridos%3A%0A1.%20Separar%20com%20clareza%20o%20que%20drena%20e%20o%20que%20pode%20virar%20especialidade%0A2.%20Criar%20um%20modelo%20de%20experi%C3%AAncia%20do%20h%C3%B3spede%20mais%20humano%20e%20memor%C3%A1vel%0A3.%20Oferecer%20esse%20diferencial%20dentro%20da%20opera%C3%A7%C3%A3o%20atual%20ou%20em%20outra%20empresa" target="_blank" rel="noopener">
+          Começar agora
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <div class="reco-meta">Retorno em 0–3 meses · Baixo risco</div>
+      </article>
+
+      <article class="reco-card balanced" data-reveal>
+        <div class="reco-head">
+          <div class="reco-level"><span class="dot"></span> Equilibrado</div>
+          <div class="reco-priority"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        </div>
+        <h3 class="reco-title">Analista de comunicação <em>em organização com propósito</em></h3>
+        <p class="reco-body">
+          O melhor ponto de equilíbrio entre identidade, sustentabilidade e futuro. Aproveita a formação, preserva a dimensão relacional e abre espaço para <strong>equipe, clareza e sentido</strong>.
+        </p>
+        <a class="reco-cta" href="https://chatgpt.com/?q=Eu%20preciso%20que%20voc%C3%AA%20bole%20para%20mim%20um%20plano%20de%20como%20iniciar%20a%20seguinte%20carreira%3A%0A%0AAnalista%20de%20comunica%C3%A7%C3%A3o%20em%20organiza%C3%A7%C3%A3o%20com%20prop%C3%B3sito%0A%0AO%20que%20%C3%A9%20essa%20carreira%3A%20Aproveita%20diretamente%20a%20forma%C3%A7%C3%A3o%20em%20Comunica%C3%A7%C3%A3o%20Organizacional%2C%20unindo%20pessoas%2C%20clareza%2C%20ambiente%20e%20prop%C3%B3sito%20numa%20fun%C3%A7%C3%A3o%20h%C3%ADbrida%20e%20relacional.%0A%0APor%20que%20faz%20sentido%3A%20O%20melhor%20ponto%20de%20equil%C3%ADbrio%20entre%20identidade%2C%20sustentabilidade%20e%20futuro.%20Aproveita%20a%20forma%C3%A7%C3%A3o%2C%20preserva%20a%20dimens%C3%A3o%20relacional%20e%20abre%20espa%C3%A7o%20para%20equipe%2C%20clareza%20e%20sentido.%0A%0AO%20que%20j%C3%A1%20existe%20a%20favor%3A%20Forma%C3%A7%C3%A3o%20em%20Comunica%C3%A7%C3%A3o%20Social%2C%20capacidade%20de%20organizar%20pensamento%20e%20repert%C3%B3rio%20relacional.%0A%0APrincipal%20barreira%3A%20Construir%20portf%C3%B3lio%20ou%20repert%C3%B3rio%20recente%20de%20comunica%C3%A7%C3%A3o%20aplicada.%0A%0APrimeiros%20passos%20sugeridos%3A%0A1.%20Montar%20curr%C3%ADculo%20e%20LinkedIn%20focados%20em%20comunica%C3%A7%C3%A3o%20organizacional%0A2.%20Criar%20tr%C3%AAs%20pe%C3%A7as%20de%20portf%C3%B3lio%20em%20comunica%C3%A7%C3%A3o%20interna%20ou%20institucional%0A3.%20Buscar%20vagas%20em%20organiza%C3%A7%C3%B5es%20com%20prop%C3%B3sito%2C%20educa%C3%A7%C3%A3o%2C%20terceiro%20setor%2C%20igrejas%20ou%20marcas%20humanas" target="_blank" rel="noopener">
+          Validar em curto prazo
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <div class="reco-meta">Prioridade estratégica · Retorno em 2–6 meses</div>
+      </article>
+
+      <article class="reco-card bold-path" data-reveal>
+        <div class="reco-head">
+          <div class="reco-level"><span class="dot"></span> Ousado</div>
+          <div class="reco-priority"><i class="on"></i><i class="on"></i><i></i></div>
+        </div>
+        <h3 class="reco-title">Proposta autoral <em>de experiências de presença</em></h3>
+        <p class="reco-body">
+          Entre as ideias ousadas, a mais coerente com o conjunto do perfil. Deve começar como <strong>experimento pequeno</strong>, sem pressa e com testes reais de aderência.
+        </p>
+        <a class="reco-cta" href="https://chatgpt.com/?q=Eu%20preciso%20que%20voc%C3%AA%20bole%20para%20mim%20um%20plano%20de%20como%20iniciar%20a%20seguinte%20carreira%3A%0A%0AProposta%20autoral%20de%20experi%C3%AAncias%20de%20presen%C3%A7a%0A%0AO%20que%20%C3%A9%20essa%20carreira%3A%20Criar%20uma%20marca%20autoral%20de%20retiros%2C%20encontros%20e%20experi%C3%AAncias%20que%20re%C3%BAnam%20hospitalidade%2C%20profundidade%2C%20conversa%2C%20ambi%C3%AAncia%2C%20f%C3%A9%20e%20cuidado%20integral.%0A%0APor%20que%20faz%20sentido%3A%20Entre%20as%20ideias%20ousadas%2C%20%C3%A9%20a%20mais%20coerente%20com%20o%20conjunto%20do%20perfil.%20Deve%20come%C3%A7ar%20como%20experimento%20pequeno%2C%20sem%20pressa%20e%20com%20testes%20reais%20de%20ader%C3%AAncia.%0A%0AO%20que%20seria%20necess%C3%A1rio%20desenvolver%3A%20Modelo%20de%20neg%C3%B3cio%2C%20facilita%C3%A7%C3%A3o%2C%20parceria%20com%20espa%C3%A7os%20e%20estrutura%20operacional.%0A%0APrincipal%20risco%3A%20Pode%20exigir%20energia%20empreendedora%20maior%20do%20que%20o%20perfil%20atual%20demonstra%20%E2%80%94%20por%20isso%20come%C3%A7ar%20pequeno%20%C3%A9%20essencial.%0A%0AHorizonte%20realista%3A%2012%20a%2024%20meses" target="_blank" rel="noopener">
+          Explorar com cautela
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <div class="reco-meta">Horizonte de 12–24 meses · Alto potencial</div>
+      </article>
+    </div>
+
+    <div style="margin-top:48px;padding:32px;border:1px dashed var(--border-strong);border-radius:var(--radius-lg);background:var(--surface);width:100%;box-sizing:border-box;" data-reveal>
+      <div class="eyebrow">Síntese final</div>
+      <p style="font-size:17px;line-height:1.6;color:var(--text);margin:6px 0 0;font-weight:400;">
+        O perfil aponta menos para carreiras técnicas, frias ou altamente pressionadas, e <em style="color:var(--accent);font-style:italic;font-weight:500">mais para trabalhos em que Bruna possa unir comunicação, cuidado, experiência humana, ambiente acolhedor, equipe e propósito.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-mark">AV</div>
+        <div>
+          <div style="font-weight:700;font-size:13px">Análise Vocacional Consolidada</div>
+          <div class="footer-note" style="margin-top:3px">Bruna · documento de leitura</div>
+        </div>
+      </div>
+      <p class="footer-text">
+        Metodologia: dashboard construído exclusivamente a partir do documento consolidado. Leituras visuais (como o radar) são representações interpretativas de ênfases presentes no texto, não medidas psicométricas. Decisões profissionais pedem conversa com profissionais de carreira, mentoria e discernimento pessoal.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ COMPARE TRAY ============ -->
+<div class="compare-tray" id="compareTray">
+  <div class="compare-tray-info">Comparar</div>
+  <div class="compare-tray-items" id="compareTrayItems"></div>
+  <button class="compare-clear" id="compareClear">Limpar</button>
+  <button class="compare-action" id="compareOpen">
+    Comparar lado a lado
+    <i data-lucide="arrow-right"></i>
+  </button>
+</div>
+
+<!-- ============ COMPARE MODAL ============ -->
+<div class="modal" id="compareModal" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow">Comparação lado a lado</div>
+        <h3 id="compareTitle">Análise comparativa</h3>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Fechar"><i data-lucide="x"></i></button>
+    </div>
+    <div class="compare-table" id="compareTable"></div>
+  </div>
+</div>
+
+<!-- ============ JS ============ -->
+<script>
+/* ==========================================================
+   DADOS — extraídos integralmente do PDF consolidado
+   ========================================================== */
+const DATA = {
+  zero: [
+    {
+      id:'z1', title:'Community manager ou facilitadora de comunidade', category:'Carreira do zero',
+      reason:'Conecta pessoas, vínculo, conversa, presença e trabalho em equipe, que são elementos muito fortes no perfil.',
+      risk:'Baixo', cost:'Baixo', time:'3 a 6 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:86, favor:'Escuta, acolhimento, habilidade relacional e desejo explícito de trabalhar com outras pessoas.',
+      barriers:'Aprender ferramentas, rotina de gestão de comunidade e métricas básicas sem deixar a função virar algo excessivamente operacional.',
+      steps:[
+        'Estudar vagas e descrições de função em comunidades, educação, wellness e membership',
+        'Montar um miniportfólio mostrando como cuidaria da jornada de uma comunidade',
+        'Buscar uma experiência-piloto voluntária ou freelancer em um grupo pequeno'
+      ]
+    },
+    {
+      id:'z2', title:'Facilitadora de grupos de conversa, escuta e mediação', category:'Carreira do zero',
+      reason:'Materializa a inclinação para ouvir, acolher, orientar e sustentar conversas profundas em ambientes seguros.',
+      risk:'Médio', cost:'Baixo a médio', time:'3 a 9 meses', timeKey:'curto', riskKey:'medio', costKey:'baixo', income:'Médio',
+      adherence:87,
+      favor:'Empatia, prazer em aconselhar, gosto por vulnerabilidade segura e boa leitura humana.',
+      barriers:'Ganhar método, limites éticos e segurança para conduzir grupos sem assumir papel terapêutico indevido.',
+      steps:[
+        'Estudar facilitação de grupos, CNV, escuta ativa e mediação',
+        'Testar um grupo pequeno com tema claro e duração definida',
+        'Aprender a desenhar encontros com começo, meio, fim e combinados'
+      ]
+    },
+    {
+      id:'z3', title:'Concierge ou profissional de experiência do hóspede', category:'Carreira do zero',
+      reason:'Une cuidado prático, bem-estar, logística e atenção aos detalhes de uma experiência humana concreta.',
+      risk:'Baixo', cost:'Baixo', time:'1 a 3 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:84,
+      favor:'Ela gosta de pensar em conforto, acolhimento, refeições, logística e sensação de cuidado integral.',
+      barriers:'Lidar com padrão de serviço, organização operacional e eventuais momentos de urgência.',
+      steps:[
+        'Mapear funções de guest experience em hotelaria, locação por temporada e hospitalidade boutique',
+        'Traduzir a experiência atual em linguagem de atendimento e experiência',
+        'Testar um serviço-piloto de jornada do hóspede mais humanizada'
+      ]
+    },
+    {
+      id:'z4', title:'Consultora de organização pessoal e rotinas', category:'Carreira do zero',
+      reason:'Transforma o prazer por listas, clareza e organização mental em ajuda prática para outras pessoas.',
+      risk:'Baixo', cost:'Baixo', time:'3 a 6 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:78,
+      favor:'Gosto por escrever, organizar pensamentos, ver ordem surgir e gerar sensação de eficiência.',
+      barriers:'Construir método próprio, autoridade inicial e carteira de clientes.',
+      steps:[
+        'Estruturar um método simples de organização mental e rotina',
+        'Testar o método ajudando uma ou duas pessoas próximas',
+        'Criar uma apresentação enxuta do serviço com antes e depois do processo'
+      ]
+    },
+    {
+      id:'z5', title:'Designer de experiência do colaborador (Employee Experience)', category:'Carreira do zero',
+      reason:'Foca em tornar o ambiente de trabalho mais humano, acolhedor e bem desenhado para as pessoas.',
+      risk:'Médio', cost:'Baixo a médio', time:'6 a 12 meses', timeKey:'medio', riskKey:'medio', costKey:'baixo', income:'Médio a alto',
+      adherence:80,
+      favor:'Sensibilidade a clima, bem-estar, ambiente agradável, relações e aversão a pressão tóxica.',
+      barriers:'Entrar no mercado de RH, cultura e experiência do colaborador.',
+      steps:[
+        'Estudar fundamentos de employee experience e cultura organizacional',
+        'Ajustar currículo destacando escuta, comunicação e sensibilidade a ambiente',
+        'Mapear empresas que valorizem bem-estar e cultura humana'
+      ]
+    },
+    {
+      id:'z6', title:'Facilitadora de bem-estar corporal', category:'Carreira do zero',
+      reason:'Movimento corporal aparece no material como uma das maiores fontes de energia, regulação emocional e sensação de flow.',
+      risk:'Médio', cost:'Médio', time:'6 a 18 meses', timeKey:'longo', riskKey:'medio', costKey:'medio', income:'Médio',
+      adherence:82,
+      favor:'Consciência corporal, vínculo com caminhada, dança, yoga, alongamento e pilates.',
+      barriers:'Necessidade de formação séria, prática supervisionada e tempo para ganhar segurança.',
+      steps:[
+        'Testar duas trilhas de formação que façam sentido, como yoga ou movimento consciente',
+        'Criar uma rotina semanal consistente de prática',
+        'Conversar com profissionais da área para entender mercado e rotina real'
+      ]
+    },
+    {
+      id:'z7', title:'Mentora de comunicação e expressão autêntica', category:'Carreira do zero',
+      reason:'Usa a base de comunicação de forma mais humana, ajudando pessoas a se expressarem com verdade e clareza, sem lógica performática vazia.',
+      risk:'Baixo a médio', cost:'Baixo', time:'3 a 6 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:83,
+      favor:'Formação em comunicação, repertório de palco, escuta e aversão à superficialidade.',
+      barriers:'Transformar a ideia em metodologia clara e evitar associação direta com carreira artística tradicional.',
+      steps:[
+        'Escrever um posicionamento sobre o que é comunicação verdadeira para ela',
+        'Formatar um piloto curto de mentoria ou oficina',
+        'Convidar duas pessoas para testar o processo e dar feedback'
+      ]
+    }
+  ],
+
+  historico: [
+    {
+      id:'h1', title:'Analista de comunicação interna ou institucional', category:'Com histórico', legacy:true,
+      reason:'Aproveita diretamente a formação em Comunicação Organizacional e permite unir pessoas, clareza, ambiente e propósito.',
+      risk:'Baixo', cost:'Baixo', time:'2 a 6 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:92,
+      favor:'Formação em Comunicação Social, capacidade de organizar pensamento e repertório relacional.',
+      barriers:'Construir portfólio ou repertório recente de comunicação aplicada.',
+      steps:[
+        'Montar currículo e LinkedIn focados em comunicação organizacional',
+        'Criar três peças de portfólio em comunicação interna ou institucional',
+        'Buscar vagas em organizações com propósito, educação, terceiro setor, igrejas ou marcas humanas'
+      ]
+    },
+    {
+      id:'h2', title:'Coordenadora de experiência em locação por temporada ou hospitalidade', category:'Com histórico', legacy:true,
+      reason:'Aproveita o trabalho atual, mas desloca o foco da parte mais numérica para a parte de experiência, acolhimento e jornada.',
+      risk:'Baixo', cost:'Baixo', time:'Imediato a 3 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:90,
+      favor:'Experiência atual com administração de imóveis e entendimento da dinâmica do hóspede.',
+      barriers:'Redesenhar a função para que não fique presa ao que mais drena: contas, planilhas e negociação.',
+      steps:[
+        'Separar com clareza o que drena e o que pode virar especialidade',
+        'Criar um modelo de experiência do hóspede mais humano e memorável',
+        'Oferecer esse diferencial dentro da operação atual ou em outra empresa'
+      ]
+    },
+    {
+      id:'h3', title:'Curadora de imóveis e hospedagem afetiva', category:'Com histórico', legacy:true,
+      reason:'É uma evolução mais autoral da experiência atual, reposicionando o imóvel como experiência acolhedora e bem curada.',
+      risk:'Baixo a médio', cost:'Baixo', time:'Imediato a 4 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio a alto',
+      adherence:89,
+      favor:'Portfólio de imóveis, visão prática da operação e sensibilidade ao ambiente físico.',
+      barriers:'Exige refinamento de posicionamento e, idealmente, apoio de terceiros na parte financeira mais pesada.',
+      steps:[
+        'Criar um pacote de boas-vindas e ambientação para uma hospedagem piloto',
+        'Registrar a transformação da experiência com fotos, relatos e processos',
+        'Reposicionar o serviço com foco em hospitalidade boutique'
+      ]
+    },
+    {
+      id:'h4', title:'Produtora de projetos, eventos ou experiências com propósito', category:'Com histórico', legacy:true,
+      reason:'Une comunicação, algum repertório de produção, presença e desejo de criar experiências significativas para pessoas.',
+      risk:'Médio', cost:'Baixo a médio', time:'2 a 6 meses', timeKey:'curto', riskKey:'medio', costKey:'baixo', income:'Médio',
+      adherence:82,
+      favor:'Vivência em teatro, passagem por produção e base em comunicação.',
+      barriers:'Alguns projetos exigem ritmo acelerado; será importante escolher eventos menores ou com cultura saudável.',
+      steps:[
+        'Focar em nichos mais aderentes, como eventos intimistas, educacionais ou ministeriais',
+        'Montar portfólio simples de operação, comunicação e experiência',
+        'Buscar participação em um projeto real de pequeno porte'
+      ]
+    },
+    {
+      id:'h5', title:'Assistente ou coordenadora de comunicação e projetos em igreja ou organização cristã', category:'Com histórico', legacy:true,
+      reason:'Une fé, propósito, pessoas e comunicação de forma direta, sem exigir que tudo passe pela lógica corporativa tradicional.',
+      risk:'Médio', cost:'Baixo', time:'1 a 4 meses', timeKey:'curto', riskKey:'medio', costKey:'baixo', income:'Baixo a médio',
+      adherence:88,
+      favor:'Formação em comunicação, sensibilidade relacional, experiência artística e afinidade com trabalho em comunidade.',
+      barriers:'Encontrar contexto maduro, saudável e bem estruturado, para não cair em sobrecarga informal.',
+      steps:[
+        'Mapear igrejas ou ministérios com estrutura compatível',
+        'Identificar funções que unam acolhimento, comunicação e organização',
+        'Começar por projeto, meio período ou voluntariado com escopo definido'
+      ]
+    },
+    {
+      id:'h6', title:'Redatora de conteúdo institucional, devocional ou de relacionamento', category:'Com histórico', legacy:true,
+      reason:'Escrita, organização de pensamento e busca de sentido aparecem de forma muito consistente no material.',
+      risk:'Baixo', cost:'Baixo', time:'2 a 4 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:85,
+      favor:'Formação em comunicação, experiência de reflexão escrita e repertório humano e espiritual.',
+      barriers:'Construir portfólio e adaptar a escrita a demandas profissionais específicas.',
+      steps:[
+        'Produzir cinco textos de portfólio em estilos diferentes',
+        'Escolher um nicho inicial, como institucional, comunidade, fé ou hospitalidade',
+        'Oferecer pacotes simples para pequenos clientes ou projetos alinhados'
+      ]
+    },
+    {
+      id:'h7', title:'Instrutora de consciência corporal em contexto de cuidado', category:'Com histórico', legacy:true,
+      reason:'Aproxima o histórico corporal, artístico e de presença de uma proposta de cuidado mais saudável que a lógica da performance.',
+      risk:'Baixo a médio', cost:'Médio a alto', time:'1 a 2 anos', timeKey:'longo', riskKey:'baixo', costKey:'alto', income:'Médio',
+      adherence:78,
+      favor:'Vivência com corpo, presença cênica, movimento e interesse consistente em yoga, alongamento e práticas afins.',
+      barriers:'Necessidade de formação formal e tempo para amadurecer uma proposta responsável.',
+      steps:[
+        'Entrar em uma formação séria em yoga, somática ou movimento consciente',
+        'Conduzir práticas simples em pequenos grupos com supervisão',
+        'Desenhar com clareza a ponte entre corpo, presença e cuidado integral'
+      ]
+    }
+  ],
+
+  pessoais: [
+    {
+      id:'p1', title:'Círculo de escuta e conversa profunda', category:'Projeto pessoal',
+      reason:'Conversa edificante, vínculo seguro e profundidade relacional são fontes claras de energia para ela.',
+      risk:'Baixo', cost:'Muito baixo', time:'Imediato', timeKey:'curto', riskKey:'baixo', costKey:'baixo',
+      adherence:88,
+      format:'Encontro quinzenal ou mensal com grupo pequeno e tema definido',
+      favor:'Escuta, acolhimento, sensibilidade e gosto real por esse tipo de interação',
+      difficulty:'Baixa', satisfaction:'Alta', growth:'Médio',
+      steps:[
+        'Escolher um recorte claro do grupo',
+        'Definir um formato simples de 60 a 90 minutos',
+        'Testar três encontros pilotos com feedback ao final'
+      ]
+    },
+    {
+      id:'p2', title:'Projeto contínuo de escrita reflexiva', category:'Projeto pessoal',
+      reason:'Escrita e organização interna aparecem como forma de energia, clareza e processamento pessoal.',
+      risk:'Baixo', cost:'Muito baixo', time:'Imediato', timeKey:'curto', riskKey:'baixo', costKey:'baixo',
+      adherence:85,
+      format:'Newsletter, blog, caderno estruturado ou série semanal de textos',
+      favor:'Gosto por escrever, refletir e transformar pensamento em ordem',
+      difficulty:'Baixa', satisfaction:'Alta', growth:'Médio',
+      steps:[
+        'Escolher um canal único para começar',
+        'Definir dez temas conectados à vida, fé, cuidado, presença e vocação',
+        'Publicar com frequência pequena, porém estável'
+      ]
+    },
+    {
+      id:'p3', title:'Clube do livro e café para mulheres', category:'Projeto pessoal',
+      reason:'Une pequenos prazeres, ambiência acolhedora e conversas profundas, sem exigir formato grande ou pesado.',
+      risk:'Baixo', cost:'Baixo', time:'1 mês', timeKey:'curto', riskKey:'baixo', costKey:'baixo',
+      adherence:83,
+      format:'Encontros mensais presenciais em cafeteria, casa ou espaço comunitário',
+      favor:'Capacidade de acolhimento, gosto por café, ritmo contemplativo e profundidade relacional',
+      difficulty:'Baixa', satisfaction:'Alta', growth:'Baixo a médio',
+      steps:[
+        'Escolher um livro ou tema central',
+        'Convidar um grupo pequeno de mulheres',
+        'Definir a primeira data e um roteiro simples de conversa'
+      ]
+    },
+    {
+      id:'p4', title:'Projeto corpo em movimento', category:'Projeto pessoal',
+      reason:'O corpo, no caso dela, não é periférico; é fonte de regulação, bem-estar e vida.',
+      risk:'Baixo', cost:'Baixo', time:'12 semanas', timeKey:'curto', riskKey:'baixo', costKey:'baixo',
+      adherence:82,
+      format:'Rotina pessoal com trilha de prática e registro ao longo de semanas',
+      favor:'Interesse real e percepção clara do efeito positivo dessas práticas',
+      difficulty:'Baixa', satisfaction:'Alta', growth:'Médio',
+      steps:[
+        'Escolher uma prática central por 12 semanas',
+        'Registrar o efeito físico, emocional e espiritual',
+        'Decidir se isso permanece como cuidado pessoal ou vira trilha profissional'
+      ]
+    },
+    {
+      id:'p5', title:'Voluntariado estruturado de acolhimento e hospitalidade na igreja', category:'Projeto pessoal',
+      reason:'Une fé, serviço, presença, cuidado e ambiente comunitário.',
+      risk:'Baixo', cost:'Muito baixo', time:'Imediato', timeKey:'curto', riskKey:'baixo', costKey:'baixo',
+      adherence:86,
+      format:'Participação em equipe de acolhimento, integração ou acompanhamento',
+      favor:'Base cristã, desejo ministerial, perfil relacional e gosto por fazer pessoas se sentirem bem',
+      difficulty:'Baixa', satisfaction:'Alta', growth:'Médio',
+      steps:[
+        'Identificar uma frente específica de serviço',
+        'Conversar com a liderança para definir escopo saudável',
+        'Começar com um período de teste e revisar a aderência'
+      ]
+    },
+    {
+      id:'p6', title:'Encontros "café sem pressa"', category:'Projeto pessoal',
+      reason:'O material mostra prazer em café, presença, conversa e experiências acolhedoras simples.',
+      risk:'Baixo', cost:'Muito baixo', time:'Imediato', timeKey:'curto', riskKey:'baixo', costKey:'baixo',
+      adherence:81,
+      format:'Encontros pequenos em casa, cafeteria ou espaço comunitário',
+      favor:'Gosto por ambiência, vínculo humano e pequenos rituais de presença',
+      difficulty:'Baixa', satisfaction:'Alta', growth:'Médio',
+      steps:[
+        'Testar um formato enxuto com 4 a 6 pessoas',
+        'Definir um tema leve por encontro',
+        'Observar se o projeto a alimenta de verdade ou apenas parece bonito na ideia'
+      ]
+    },
+    {
+      id:'p7', title:'Apoio criativo em projetos de arte cristã', category:'Projeto pessoal',
+      reason:'Mantém viva a dimensão criativa e simbólica sem exigir retorno à carreira de atriz ou protagonismo artístico.',
+      risk:'Médio', cost:'Baixo', time:'2 a 4 meses', timeKey:'curto', riskKey:'medio', costKey:'baixo',
+      adherence:75,
+      format:'Participação pontual em roteiro, direção de cena, apoio criativo ou consultoria de bastidor',
+      favor:'Histórico com teatro, imagens criativas já existentes e abertura para colaborar com prazer',
+      difficulty:'Média', satisfaction:'Média a alta', growth:'Baixo',
+      steps:[
+        'Organizar em papel as cenas ou ideias que já surgiram',
+        'Compartilhar com um ministério de artes ou equipe de confiança',
+        'Oferecer apoio como colaboradora, não como responsável principal'
+      ]
+    }
+  ],
+
+  renda: [
+    {
+      id:'r1', title:'Consultoria de experiência para locação por temporada', category:'Projeto com renda',
+      reason:'Aproveita o histórico atual, mas desloca o foco para acolhimento, jornada, ambiente e cuidado.',
+      risk:'Baixo', cost:'Baixo', time:'1 a 3 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:87,
+      model:'Consultoria pontual, fee mensal ou pacote por imóvel ou operação',
+      favor:'Experiência com imóveis, visão prática da operação e atenção à experiência humana',
+      steps:[
+        'Desenhar um checklist de melhoria da experiência do hóspede',
+        'Aplicar em um ou dois imóveis como teste',
+        'Transformar os resultados em oferta clara de serviço'
+      ]
+    },
+    {
+      id:'r2', title:'Oficina de escrita reflexiva e organização mental', category:'Projeto com renda',
+      reason:'Une escrita, clareza, profundidade e uma prática que ela já usa para se organizar internamente.',
+      risk:'Baixo a médio', cost:'Baixo', time:'1 a 2 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:83,
+      model:'Turmas pequenas, encontros online, workshop fechado ou assinatura',
+      favor:'Gosto por escrever, refletir e criar ordem em pensamentos e emoções',
+      steps:[
+        'Criar uma oficina piloto de 90 minutos',
+        'Convidar um grupo pequeno com preço acessível ou formato-teste',
+        'Colher depoimentos e ajustar a estrutura'
+      ]
+    },
+    {
+      id:'r3', title:'Curadoria de encontros intimistas ou cafés temáticos', category:'Projeto com renda',
+      reason:'Junta cuidado, ambiente, conversa, presença e pequenas experiências bem desenhadas.',
+      risk:'Médio', cost:'Baixo a médio', time:'1 a 3 meses', timeKey:'curto', riskKey:'medio', costKey:'medio', income:'Médio',
+      adherence:82,
+      model:'Venda por encontro, experiências sob demanda ou parcerias com espaços',
+      favor:'Senso de acolhimento, prazer em ambiência, café, refeição, vínculo e experiência humana',
+      steps:[
+        'Escolher um formato simples, como café temático ou roda de conversa',
+        'Testar um encontro pequeno pago ou semi-pago',
+        'Documentar a experiência para virar produto replicável'
+      ]
+    },
+    {
+      id:'r4', title:'Produção de retiros, encontros ou jornadas para igrejas e comunidades', category:'Projeto com renda',
+      reason:'Une propósito, gente, ambiente e experiências que podem ter peso espiritual real.',
+      risk:'Médio', cost:'Baixo', time:'2 a 4 meses', timeKey:'curto', riskKey:'medio', costKey:'baixo', income:'Médio',
+      adherence:84,
+      model:'Prestação de serviço por projeto, coordenação ou produção executiva',
+      favor:'Comunicação, sensibilidade relacional, alguma experiência com produção e afinidade com contexto cristão',
+      steps:[
+        'Começar auxiliando um evento real de pequeno porte',
+        'Registrar entregas, bastidores e aprendizados',
+        'Criar uma proposta enxuta de produção humanizada'
+      ]
+    },
+    {
+      id:'r5', title:'Serviço de conteúdo para marcas, igrejas ou projetos com propósito', category:'Projeto com renda',
+      reason:'Usa a escrita, a comunicação e a capacidade de traduzir sentido em linguagem clara.',
+      risk:'Baixo', cost:'Baixo', time:'1 a 2 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:83,
+      model:'Pacotes mensais, textos avulsos, roteiros e comunicação de relacionamento',
+      favor:'Formação em comunicação, escrita reflexiva e repertório institucional e humano',
+      steps:[
+        'Montar um portfólio com cinco entregas-modelo',
+        'Escolher um nicho inicial alinhado aos valores dela',
+        'Captar um primeiro cliente-teste'
+      ]
+    },
+    {
+      id:'r6', title:'Serviço de anfitriã para eventos ou retiros de terceiros', category:'Projeto com renda',
+      reason:'É muito relacional, trabalha em equipe e envolve cuidar de pessoas sem a pressão de criar o evento inteiro do zero.',
+      risk:'Baixo', cost:'Muito baixo', time:'1 a 3 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:86,
+      model:'Prestação de serviço por diária ou pacote de hospitalidade',
+      favor:'Habilidade de administrar logística, experiência com imóveis e aptidão cuidadora',
+      steps:[
+        'Criar uma apresentação simples do serviço de gestão de hospitalidade',
+        'Mapear organizadores de retiros, terapeutas ou líderes que já realizam eventos',
+        'Oferecer apoio na próxima edição de um encontro real'
+      ]
+    },
+    {
+      id:'r7', title:'Escrita criativa sob demanda para memórias e histórias de família', category:'Projeto com renda',
+      reason:'Aproveita escrita empática, escuta acolhedora e ritmo detalhista para transformar histórias em texto.',
+      risk:'Baixo', cost:'Muito baixo', time:'2 a 3 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:80,
+      model:'Cobrança por projeto literário, biográfico ou memorial',
+      favor:'Comunicação, escuta, sensibilidade humana e gosto por organizar narrativas',
+      steps:[
+        'Entrevistar um familiar ou conhecido e escrever uma história piloto',
+        'Formatar o material em PDF ou livreto digital',
+        'Usar esse projeto como portfólio para vender a experiência'
+      ]
+    },
+    {
+      id:'r8', title:'Consultoria de home setup focada em bem-estar', category:'Projeto com renda',
+      reason:'Leva o olhar treinado para ambiente, acolhimento e experiência física a um serviço claro e vendável.',
+      risk:'Baixo', cost:'Baixo', time:'1 a 2 meses', timeKey:'curto', riskKey:'baixo', costKey:'baixo', income:'Médio',
+      adherence:81,
+      model:'Consultoria por imóvel, quarto, sala ou hospedagem',
+      favor:'Contato atual com imóveis e sensibilidade a conforto, atmosfera e organização',
+      steps:[
+        'Transformar um imóvel piloto com foco em acolhimento e registrar o antes e depois',
+        'Definir o escopo do serviço e o resultado esperado',
+        'Oferecer a consultoria para proprietários conhecidos ou clientes atuais'
+      ]
+    }
+  ],
+
+  ousadas: [
+    {
+      id:'o1', title:'Formação séria em aconselhamento cristão ou cuidado pastoral', category:'Ideia ousada', bold:true,
+      reason:'Exigiria um reposicionamento mais profundo de identidade profissional e uma trilha formativa consistente.',
+      risk:'Médio', cost:'Médio', time:'1 a 2 anos', timeKey:'longo', riskKey:'medio', costKey:'medio',
+      adherence:80,
+      whyStill:'Escuta, acolhimento, fé, propósito e desejo de servir aparecem como traços muito fortes.',
+      develop:'Base teórica, limites éticos, supervisão e maturidade ministerial',
+      mainRisk:'Assumir responsabilidades emocionais grandes demais cedo demais',
+      mainOpportunity:'Transformar uma inclinação natural de cuidado em serviço maduro e coerente',
+      firstMove:'Entrar em uma formação introdutória ou servir em uma frente de cuidado acompanhada por liderança madura'
+    },
+    {
+      id:'o2', title:'Atuação remota em member care ou customer success internacional', category:'Ideia ousada', bold:true,
+      reason:'Expande o horizonte para o mercado remoto internacional.',
+      risk:'Médio', cost:'Baixo', time:'6 a 12 meses', timeKey:'medio', riskKey:'medio', costKey:'baixo',
+      adherence:78,
+      whyStill:'Preserva o eixo humano, relacional e de cuidado, sem depender de áreas técnicas que não combinam com ela.',
+      develop:'Inglês profissional, ferramentas digitais e entendimento de operação remota',
+      mainRisk:'Entrar em ambientes digitais de alta pressão e perder aderência ao próprio ritmo',
+      mainOpportunity:'Acessar mercados mais amplos e funções muito alinhadas ao perfil relacional',
+      firstMove:'Mapear vinte vagas reais e identificar quais competências se repetem'
+    },
+    {
+      id:'o3', title:'Marca autoral de retiros, encontros e experiências de presença', category:'Ideia ousada', bold:true,
+      reason:'Envolve criar proposta autoral, posicionamento, curadoria e operação de experiência.',
+      risk:'Médio', cost:'Médio', time:'6 a 12 meses', timeKey:'medio', riskKey:'medio', costKey:'medio',
+      adherence:86,
+      whyStill:'Reúne hospitalidade, profundidade, conversa, ambiência, fé e cuidado integral.',
+      develop:'Modelo de negócio, facilitação, parceria com espaços e estrutura operacional',
+      mainRisk:'Exigir energia empreendedora maior do que ela naturalmente demonstra hoje',
+      mainOpportunity:'Criar algo muito coerente com seu jeito singular de gerar valor',
+      firstMove:'Realizar um encontro-piloto pequeno e observar aderência, energia e resposta das pessoas'
+    },
+    {
+      id:'o4', title:'Certificação robusta em práticas corpo-mente integrada', category:'Ideia ousada', bold:true,
+      reason:'Exige investimento, formação mais longa e possível reposicionamento profissional.',
+      risk:'Médio', cost:'Médio a alto', time:'1 a 2 anos', timeKey:'longo', riskKey:'medio', costKey:'alto',
+      adherence:75,
+      whyStill:'Movimento corporal, presença e regulação aparecem como eixo fortíssimo da experiência dela.',
+      develop:'Formação técnica, repertório didático e clareza de posicionamento',
+      mainRisk:'Investir antes de validar se quer mesmo transformar isso em profissão',
+      mainOpportunity:'Construir um trabalho menos drenante e mais alinhado ao corpo, ao cuidado e ao ritmo dela',
+      firstMove:'Passar noventa dias em prática consistente e conversar com profissionais formados nessa linha'
+    },
+    {
+      id:'o5', title:'Co-criação de experiências cênicas ou devocionais para igreja', category:'Ideia ousada', bold:true,
+      reason:'Toca um território emocional sensível e exigiria redescobrir o elemento artístico em outro lugar.',
+      risk:'Médio', cost:'Baixo', time:'3 a 6 meses', timeKey:'curto', riskKey:'medio', costKey:'baixo',
+      adherence:72,
+      whyStill:'O teatro teve peso real em sua história, e ela mesma diz que auxiliaria com prazer em algo assim se fosse coletivo.',
+      develop:'Limites emocionais, papel claro dentro da equipe e relação mais curada com o fazer artístico',
+      mainRisk:'Reabrir dores sem estrutura ou voltar a um lugar de desgaste',
+      mainOpportunity:'Resgatar o elemento criativo em formato mais saudável, leve e coerente com a fé',
+      firstMove:'Participar como colaboradora em um projeto pequeno, sem assumir protagonismo'
+    },
+    {
+      id:'o6', title:'Gestão em sociedade de uma pousada boutique ou espaço de retiros', category:'Ideia ousada', bold:true,
+      reason:'Exige investimento, parceiros confiáveis e uma operação de hospitalidade mais ampla.',
+      risk:'Alto', cost:'Alto', time:'1 a 2 anos', timeKey:'longo', riskKey:'alto', costKey:'alto',
+      adherence:79,
+      whyStill:'Condensa ambiente agradável, acolhimento, comida, beleza, conversa, lentidão e propósito.',
+      develop:'Parcerias sólidas, noções de operação e delegação da parte financeira mais pesada',
+      mainRisk:'Alto custo financeiro e exaustão operacional se a divisão não for muito bem desenhada',
+      mainOpportunity:'Criar um projeto de vida que integre fé, hospitalidade, família e rentabilidade',
+      firstMove:'Passar alguns dias imersa em uma pousada boutique para entender os bastidores sem idealização'
+    },
+    {
+      id:'o7', title:'Autoria de um livro sobre identidade, cura emocional e propósito', category:'Ideia ousada', bold:true,
+      reason:'Pede exposição pública e disciplina prolongada de escrita sobre temas íntimos.',
+      risk:'Médio', cost:'Baixo', time:'1 ano', timeKey:'longo', riskKey:'medio', costKey:'baixo',
+      adherence:77,
+      whyStill:'Organiza seus processos internos e sua leitura espiritual da dor, podendo servir outras pessoas.',
+      develop:'Rotina de escrita, contorno emocional saudável e projeto editorial simples',
+      mainRisk:'Drenagem ao revisitar feridas antes da hora',
+      mainOpportunity:'Abrir portas para conteúdo, palestras, grupos e mentorias no meio cristão',
+      firstMove:'Escrever um sumário e um primeiro capítulo para testar se o processo gera clareza ou desgaste'
+    }
+  ],
+
+  ranking: [
+    {pos:1, name:'Analista de comunicação interna ou institucional', category:'Carreiras aproveitando histórico', adherence:92, viability:88, growth:80, why:'Equilibra aderência, viabilidade, equipe, propósito e uso direto da formação.'},
+    {pos:2, name:'Coordenadora de experiência em locação por temporada ou hospitalidade', category:'Carreiras aproveitando histórico', adherence:90, viability:91, growth:78, why:'É a transição mais prática de curto prazo, aproveitando o presente sem mantê-la no que mais drena.'},
+    {pos:3, name:'Curadora de imóveis e hospedagem afetiva', category:'Carreiras aproveitando histórico', adherence:89, viability:86, growth:82, why:'Transforma o trabalho atual em algo mais autoral, estético e centrado em acolhimento.'},
+    {pos:4, name:'Community manager ou facilitadora de comunidade', category:'Carreiras para começar do zero', adherence:89, viability:85, growth:82, why:'Conecta pessoas, vínculo, conversa e trabalho em equipe, que são pilares do perfil.'},
+    {pos:5, name:'Consultoria de experiência para locação por temporada', category:'Projetos com potencial de renda', adherence:87, viability:89, growth:80, why:'Monetiza rapidamente um ativo já existente, deslocando o foco para experiência e cuidado.'},
+    {pos:6, name:'Assistente ou coordenadora de comunicação em igreja ou organização cristã', category:'Carreiras aproveitando histórico', adherence:88, viability:80, growth:79, why:'Une fé, propósito, comunidade e comunicação de forma muito coerente.'},
+    {pos:7, name:'Facilitadora de grupos de conversa, escuta e mediação', category:'Carreiras para começar do zero', adherence:87, viability:73, growth:80, why:'É profundamente aderente, embora precise de método, limites e posicionamento.'},
+    {pos:8, name:'Redatora de conteúdo institucional, devocional ou de relacionamento', category:'Carreiras aproveitando histórico', adherence:85, viability:84, growth:77, why:'A escrita aparece forte e pode virar eixo profissional sem violentar o próprio ritmo.'},
+    {pos:9, name:'Serviço de anfitriã para eventos ou retiros de terceiros', category:'Projetos com potencial de renda', adherence:86, viability:81, growth:72, why:'Traduz bem o cuidado com pessoas e o gosto por equipe, com risco relativamente baixo.'},
+    {pos:10, name:'Marca autoral de retiros, encontros e experiências de presença', category:'Ideias ousadas', adherence:86, viability:65, growth:87, why:'É a ideia mais coerente com o coração do perfil, mas ainda precisa de validação prática.'}
+  ]
+};
+
+const ALL_ITEMS_LOOKUP = {};
+['zero','historico','pessoais','renda','ousadas'].forEach(k=>{
+  DATA[k].forEach(it=>{ ALL_ITEMS_LOOKUP[it.id] = it; });
+});
+
+/* ==========================================================
+   RENDER — CARDS
+   ========================================================== */
+function slugifyTag(s){
+  return (s||'').toString().toLowerCase()
+    .normalize('NFD').replace(/\p{Diacritic}/gu,'')
+    .replace(/\s+/g,'-');
+}
+
+function renderCardsZero(items){
+  return items.map(it=>`
+    <article class="card" data-id="${it.id}" data-risk="${it.riskKey}" data-cost="${it.costKey}" data-time="${it.timeKey}" data-search="${(it.title+' '+it.reason).toLowerCase()}">
+      <div class="card-header">
+        <div>
+          <div class="card-num">Carreira · do zero</div>
+          <h3 class="card-title">${it.title}</h3>
+        </div>
+        <button class="card-compare" aria-label="Adicionar à comparação" data-compare="${it.id}"><i data-lucide="plus"></i></button>
+      </div>
+      <p class="card-reason">${it.reason}</p>
+      <div class="card-bar">
+        <span class="card-bar-label">Aderência</span>
+        <div class="card-bar-track"><span class="card-bar-fill" style="width:${it.adherence}%"></span></div>
+        <span class="card-bar-num">${it.adherence}</span>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item"><span class="meta-label">Tempo</span><span class="meta-value">${it.time}</span></div>
+        <div class="meta-item"><span class="meta-label">Renda potencial</span><span class="meta-value">${it.income}</span></div>
+      </div>
+      <div class="card-tags">
+        <span class="tag risk-${slugifyTag(it.risk)}"><i data-lucide="alert-triangle" style="width:10px;height:10px"></i> Risco ${it.risk.toLowerCase()}</span>
+        <span class="tag cost-${slugifyTag(it.cost)}"><i data-lucide="coins" style="width:10px;height:10px"></i> Custo ${it.cost.toLowerCase()}</span>
+      </div>
+      <div class="card-detail"><div class="card-detail-inner">
+        <div class="detail-block"><h5><i data-lucide="check-circle-2"></i> O que favorece</h5><p>${it.favor}</p></div>
+        <div class="detail-block"><h5><i data-lucide="shield-alert"></i> Barreiras de entrada</h5><p>${it.barriers}</p></div>
+        <div class="detail-block"><h5><i data-lucide="footprints"></i> Primeiros 3 passos</h5>
+          <ol class="detail-steps">${it.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+        </div>
+      </div></div>
+      <div class="card-footer">
+        <button class="card-toggle" data-toggle>Ver detalhes <i data-lucide="chevron-down"></i></button>
+        <span class="card-category">${it.category}</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderCardsHistorico(items){
+  return items.map(it=>`
+    <article class="card has-legacy" data-id="${it.id}" data-risk="${it.riskKey}" data-cost="${it.costKey}" data-time="${it.timeKey}" data-search="${(it.title+' '+it.reason).toLowerCase()}">
+      <div class="card-header">
+        <div>
+          <div class="card-num">Carreira · com histórico</div>
+          <h3 class="card-title">${it.title}</h3>
+        </div>
+        <button class="card-compare" aria-label="Adicionar à comparação" data-compare="${it.id}"><i data-lucide="plus"></i></button>
+      </div>
+      <p class="card-reason">${it.reason}</p>
+      <div class="card-bar">
+        <span class="card-bar-label">Aderência</span>
+        <div class="card-bar-track"><span class="card-bar-fill" style="width:${it.adherence}%"></span></div>
+        <span class="card-bar-num">${it.adherence}</span>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item"><span class="meta-label">Tempo</span><span class="meta-value">${it.time}</span></div>
+        <div class="meta-item"><span class="meta-label">Renda potencial</span><span class="meta-value">${it.income}</span></div>
+      </div>
+      <div class="card-tags">
+        <span class="tag risk-${slugifyTag(it.risk)}"><i data-lucide="alert-triangle" style="width:10px;height:10px"></i> Risco ${it.risk.toLowerCase()}</span>
+        <span class="tag cost-${slugifyTag(it.cost)}"><i data-lucide="coins" style="width:10px;height:10px"></i> Custo ${it.cost.toLowerCase()}</span>
+      </div>
+      <div class="card-detail"><div class="card-detail-inner">
+        <div class="detail-block"><h5><i data-lucide="layers"></i> Ativos já existentes</h5><p>${it.favor}</p></div>
+        <div class="detail-block"><h5><i data-lucide="shield-alert"></i> Barreiras de entrada</h5><p>${it.barriers}</p></div>
+        <div class="detail-block"><h5><i data-lucide="footprints"></i> Primeiros 3 passos</h5>
+          <ol class="detail-steps">${it.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+        </div>
+      </div></div>
+      <div class="card-footer">
+        <button class="card-toggle" data-toggle>Ver detalhes <i data-lucide="chevron-down"></i></button>
+        <span class="card-category">${it.category}</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderCardsPessoais(items){
+  return items.map(it=>`
+    <article class="card" data-id="${it.id}" data-risk="${it.riskKey}" data-cost="${it.costKey}" data-time="${it.timeKey}" data-search="${(it.title+' '+it.reason).toLowerCase()}">
+      <div class="card-header">
+        <div>
+          <div class="card-num">Projeto · pessoal</div>
+          <h3 class="card-title">${it.title}</h3>
+        </div>
+        <button class="card-compare" aria-label="Adicionar à comparação" data-compare="${it.id}"><i data-lucide="plus"></i></button>
+      </div>
+      <p class="card-reason">${it.reason}</p>
+      <div class="card-bar">
+        <span class="card-bar-label">Aderência</span>
+        <div class="card-bar-track"><span class="card-bar-fill" style="width:${it.adherence}%"></span></div>
+        <span class="card-bar-num">${it.adherence}</span>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item"><span class="meta-label">Dificuldade</span><span class="meta-value">${it.difficulty}</span></div>
+        <div class="meta-item"><span class="meta-label">Satisfação</span><span class="meta-value">${it.satisfaction}</span></div>
+        <div class="meta-item"><span class="meta-label">Crescimento</span><span class="meta-value">${it.growth}</span></div>
+        <div class="meta-item"><span class="meta-label">Tempo</span><span class="meta-value">${it.time}</span></div>
+      </div>
+      <div class="card-detail"><div class="card-detail-inner">
+        <div class="detail-block"><h5><i data-lucide="shapes"></i> Formato ideal</h5><p>${it.format}</p></div>
+        <div class="detail-block"><h5><i data-lucide="check-circle-2"></i> O que já existe a favor</h5><p>${it.favor}</p></div>
+        <div class="detail-block"><h5><i data-lucide="footprints"></i> Primeiros 3 passos</h5>
+          <ol class="detail-steps">${it.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+        </div>
+      </div></div>
+      <div class="card-footer">
+        <button class="card-toggle" data-toggle>Ver detalhes <i data-lucide="chevron-down"></i></button>
+        <span class="card-category">${it.category}</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderCardsRenda(items){
+  return items.map(it=>`
+    <article class="card" data-id="${it.id}" data-risk="${it.riskKey}" data-cost="${it.costKey}" data-time="${it.timeKey}" data-search="${(it.title+' '+it.reason).toLowerCase()}">
+      <div class="card-header">
+        <div>
+          <div class="card-num">Projeto · com renda</div>
+          <h3 class="card-title">${it.title}</h3>
+        </div>
+        <button class="card-compare" aria-label="Adicionar à comparação" data-compare="${it.id}"><i data-lucide="plus"></i></button>
+      </div>
+      <p class="card-reason">${it.reason}</p>
+      <div class="card-bar">
+        <span class="card-bar-label">Aderência</span>
+        <div class="card-bar-track"><span class="card-bar-fill" style="width:${it.adherence}%"></span></div>
+        <span class="card-bar-num">${it.adherence}</span>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item"><span class="meta-label">Tempo p/ validar</span><span class="meta-value">${it.time}</span></div>
+        <div class="meta-item"><span class="meta-label">Renda potencial</span><span class="meta-value">${it.income}</span></div>
+      </div>
+      <div class="card-tags">
+        <span class="tag risk-${slugifyTag(it.risk)}"><i data-lucide="alert-triangle" style="width:10px;height:10px"></i> Risco ${it.risk.toLowerCase()}</span>
+        <span class="tag cost-${slugifyTag(it.cost)}"><i data-lucide="coins" style="width:10px;height:10px"></i> Custo ${it.cost.toLowerCase()}</span>
+      </div>
+      <div class="card-detail"><div class="card-detail-inner">
+        <div class="detail-block"><h5><i data-lucide="banknote"></i> Modelo de renda</h5><p>${it.model}</p></div>
+        <div class="detail-block"><h5><i data-lucide="check-circle-2"></i> O que já pode ser aproveitado</h5><p>${it.favor}</p></div>
+        <div class="detail-block"><h5><i data-lucide="footprints"></i> Primeiros 3 passos</h5>
+          <ol class="detail-steps">${it.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+        </div>
+      </div></div>
+      <div class="card-footer">
+        <button class="card-toggle" data-toggle>Ver detalhes <i data-lucide="chevron-down"></i></button>
+        <span class="card-category">${it.category}</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderCardsOusadas(items){
+  return items.map(it=>`
+    <article class="card bold" data-id="${it.id}" data-risk="${it.riskKey}" data-cost="${it.costKey}" data-time="${it.timeKey}" data-search="${(it.title+' '+it.reason).toLowerCase()}">
+      <div class="card-header">
+        <div>
+          <div class="card-num">Ideia · ousada</div>
+          <h3 class="card-title">${it.title}</h3>
+        </div>
+        <button class="card-compare" aria-label="Adicionar à comparação" data-compare="${it.id}"><i data-lucide="plus"></i></button>
+      </div>
+      <p class="card-reason">${it.reason}</p>
+      <div class="card-bar">
+        <span class="card-bar-label" style="color:rgba(244,239,229,0.5)">Aderência</span>
+        <div class="card-bar-track" style="background:rgba(244,239,229,0.15)"><span class="card-bar-fill" style="width:${it.adherence}%;background:linear-gradient(90deg,var(--c-sand),#F4EFE5)"></span></div>
+        <span class="card-bar-num" style="color:#F4EFE5">${it.adherence}</span>
+      </div>
+      <div class="card-meta">
+        <div class="meta-item"><span class="meta-label">Horizonte</span><span class="meta-value">${it.time}</span></div>
+        <div class="meta-item"><span class="meta-label">Risco</span><span class="meta-value">${it.risk}</span></div>
+      </div>
+      <div class="card-detail"><div class="card-detail-inner">
+        <div class="detail-block"><h5><i data-lucide="sparkles"></i> Por que ainda faz sentido</h5><p>${it.whyStill}</p></div>
+        <div class="detail-block"><h5><i data-lucide="tool"></i> O que seria necessário desenvolver</h5><p>${it.develop}</p></div>
+        <div class="detail-block"><h5><i data-lucide="alert-octagon"></i> Principal risco</h5><p>${it.mainRisk}</p></div>
+        <div class="detail-block"><h5><i data-lucide="target"></i> Principal oportunidade</h5><p>${it.mainOpportunity}</p></div>
+        <div class="detail-block"><h5><i data-lucide="footprints"></i> Primeiro movimento realista</h5><p>${it.firstMove}</p></div>
+      </div></div>
+      <div class="card-footer">
+        <button class="card-toggle" data-toggle>Ver detalhes <i data-lucide="chevron-down"></i></button>
+        <span class="card-category">${it.category}</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+/* Mount all grids */
+document.getElementById('grid-zero').innerHTML       = renderCardsZero(DATA.zero);
+document.getElementById('grid-historico').innerHTML  = renderCardsHistorico(DATA.historico);
+document.getElementById('grid-pessoais').innerHTML   = renderCardsPessoais(DATA.pessoais);
+document.getElementById('grid-renda').innerHTML      = renderCardsRenda(DATA.renda);
+document.getElementById('grid-ousadas').innerHTML    = renderCardsOusadas(DATA.ousadas);
+
+/* ==========================================================
+   RANKING RENDER
+   ========================================================== */
+function renderRanking(){
+  const html = DATA.ranking.map(r=>`
+    <article class="rank-row" role="listitem">
+      <div class="rank-pos">${String(r.pos).padStart(2,'0')}</div>
+      <div class="rank-main">
+        <div class="rank-cat">${r.category}</div>
+        <div class="rank-name">${r.name}</div>
+      </div>
+      <div class="rank-why">${r.why}</div>
+      <div class="rank-scores">
+        <div class="score-row"><span class="score-label">Aderência</span><div class="score-track"><span class="score-fill" style="width:${r.adherence}%"></span></div><b class="score-num">${(r.adherence/10).toFixed(1)}</b></div>
+        <div class="score-row"><span class="score-label">Viabilidade</span><div class="score-track"><span class="score-fill" style="width:${r.viability}%;background:var(--accent-soft)"></span></div><b class="score-num">${(r.viability/10).toFixed(1)}</b></div>
+        <div class="score-row"><span class="score-label">Crescim.</span><div class="score-track"><span class="score-fill" style="width:${r.growth}%;background:var(--accent-2)"></span></div><b class="score-num">${(r.growth/10).toFixed(1)}</b></div>
+      </div>
+      <a class="rank-arrow" href="#reco" aria-label="Ver recomendação"><i data-lucide="arrow-up-right"></i></a>
+    </article>
+  `).join('');
+  document.getElementById('rankList').innerHTML = html;
+}
+renderRanking();
+
+/* ==========================================================
+   RADAR — construído com SVG puro
+   ========================================================== */
+const RADAR_DATA = [
+  {label:'Relacional',          value:9},
+  {label:'Contemplativo',       value:9},
+  {label:'Comunicacional',      value:8},
+  {label:'Espiritual',          value:8},
+  {label:'Corporal',            value:7},
+  {label:'Criativo',            value:7},
+  {label:'Organizador',         value:7},
+  {label:'Tolerância à pressão',value:3}
+];
+
+function renderRadar(){
+  const cx = 200, cy = 200, R = 140;
+  const n = RADAR_DATA.length;
+  const levels = 4;
+  let svg = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-label="Radar do perfil">`;
+  // concentric polygons
+  for(let l=1;l<=levels;l++){
+    const r = (R/levels)*l;
+    const pts = [];
+    for(let i=0;i<n;i++){
+      const a = (Math.PI*2*i)/n - Math.PI/2;
+      pts.push(`${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`);
+    }
+    svg += `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(38,24,23,0.12)" stroke-width="1"/>`;
+  }
+  // axes
+  for(let i=0;i<n;i++){
+    const a = (Math.PI*2*i)/n - Math.PI/2;
+    svg += `<line x1="${cx}" y1="${cy}" x2="${cx+Math.cos(a)*R}" y2="${cy+Math.sin(a)*R}" stroke="rgba(38,24,23,0.08)"/>`;
+  }
+  // data polygon
+  const dataPts = RADAR_DATA.map((d,i)=>{
+    const a = (Math.PI*2*i)/n - Math.PI/2;
+    const r = (d.value/10)*R;
+    return `${cx+Math.cos(a)*r},${cy+Math.sin(a)*r}`;
+  });
+  svg += `<polygon points="${dataPts.join(' ')}" fill="rgba(115,87,54,0.22)" stroke="var(--accent-2)" stroke-width="2" stroke-linejoin="round" style="filter:drop-shadow(0 4px 12px rgba(64,42,23,0.18))"/>`;
+  // points
+  RADAR_DATA.forEach((d,i)=>{
+    const a = (Math.PI*2*i)/n - Math.PI/2;
+    const r = (d.value/10)*R;
+    const x = cx+Math.cos(a)*r, y = cy+Math.sin(a)*r;
+    svg += `<circle cx="${x}" cy="${y}" r="4" fill="#F4EFE5" stroke="var(--accent-2)" stroke-width="2"/>`;
+  });
+  // labels
+  RADAR_DATA.forEach((d,i)=>{
+    const a = (Math.PI*2*i)/n - Math.PI/2;
+    const lr = R + 24;
+    const x = cx+Math.cos(a)*lr, y = cy+Math.sin(a)*lr + 4;
+    const anchor = Math.abs(Math.cos(a))<0.2?'middle':(Math.cos(a)>0?'start':'end');
+    svg += `<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="11" font-weight="600" fill="var(--text)" style="letter-spacing:0.02em">${d.label}</text>`;
+  });
+  svg += `</svg>`;
+  document.getElementById('radar').innerHTML = svg;
+  document.getElementById('radarLegend').innerHTML = RADAR_DATA
+    .slice().sort((a,b)=>b.value-a.value)
+    .map(d=>`<div class="radar-item">
+      <span style="min-width:100px">${d.label}</span>
+      <span class="bar"><i style="width:${d.value*10}%"></i></span>
+      <b>${d.value.toFixed(1)}</b>
+    </div>`).join('');
+}
+renderRadar();
+
+/* ==========================================================
+   CARD EXPAND / COMPARE
+   ========================================================== */
+document.addEventListener('click',(e)=>{
+  const toggle = e.target.closest('[data-toggle]');
+  if(toggle){
+    const card = toggle.closest('.card');
+    card.classList.toggle('expanded');
+    const t = toggle;
+    t.firstChild.textContent = card.classList.contains('expanded') ? 'Recolher ' : 'Ver detalhes ';
+    return;
+  }
+  const cmp = e.target.closest('[data-compare]');
+  if(cmp){
+    toggleCompare(cmp.dataset.compare, cmp);
+    return;
+  }
+});
+
+/* ==========================================================
+   FILTERS
+   ========================================================== */
+const filterState = {
+  zero:     {risk:'all', cost:'all', time:'all', q:''},
+  historico:{risk:'all', cost:'all', time:'all', q:''},
+  pessoais: {risk:'all', cost:'all', time:'all', q:''},
+  renda:    {risk:'all', cost:'all', time:'all', q:''},
+  ousadas:  {risk:'all', cost:'all', time:'all', q:''}
+};
+
+document.querySelectorAll('[data-filter]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const group = btn.dataset.filter;
+    const key   = btn.dataset.key;
+    const val   = btn.dataset.val;
+    filterState[group][key] = val;
+    document.querySelectorAll(`[data-filter="${group}"][data-key="${key}"]`)
+      .forEach(b=>b.classList.toggle('active', b===btn));
+    applyFilter(group);
+  });
+});
+document.querySelectorAll('[data-search]').forEach(inp=>{
+  inp.addEventListener('input',()=>{
+    filterState[inp.dataset.search].q = inp.value.trim().toLowerCase();
+    applyFilter(inp.dataset.search);
+  });
+});
+document.querySelectorAll('[data-reset]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const group = btn.dataset.reset;
+    filterState[group] = {risk:'all', cost:'all', time:'all', q:''};
+    document.querySelectorAll(`[data-filter="${group}"]`).forEach(b=>{
+      b.classList.toggle('active', b.dataset.val==='all');
+    });
+    const inp = document.querySelector(`[data-search="${group}"]`);
+    if(inp) inp.value='';
+    applyFilter(group);
+  });
+});
+
+function matchRisk(cardRisk, filter){
+  if(filter==='all') return true;
+  if(filter==='baixo') return cardRisk==='baixo';
+  if(filter==='medio') return cardRisk==='medio';
+  if(filter==='alto') return cardRisk==='alto';
+  return true;
+}
+function matchCost(cardCost, filter){
+  if(filter==='all') return true;
+  if(filter==='baixo') return cardCost==='baixo';
+  if(filter==='medio') return cardCost==='medio';
+  if(filter==='alto') return cardCost==='alto';
+  return true;
+}
+
+function applyFilter(group){
+  const state = filterState[group];
+  const grid = document.getElementById('grid-'+group);
+  const cards = grid.querySelectorAll('.card');
+  let visible = 0;
+  cards.forEach(c=>{
+    const passRisk = matchRisk(c.dataset.risk, state.risk);
+    const passCost = matchCost(c.dataset.cost, state.cost);
+    const passTime = state.time==='all' || c.dataset.time===state.time;
+    const passQ = !state.q || c.dataset.search.includes(state.q);
+    const pass = passRisk && passCost && passTime && passQ;
+    c.style.display = pass ? '' : 'none';
+    if(pass) visible++;
+  });
+  // empty state
+  let empty = grid.querySelector('.empty-state');
+  if(!visible){
+    if(!empty){
+      empty = document.createElement('div');
+      empty.className = 'empty-state';
+      empty.style.cssText = 'grid-column:1/-1;padding:48px;text-align:center;background:var(--surface);border:1px dashed var(--border-strong);border-radius:var(--radius-lg);color:var(--text-muted);font-size:14px';
+      empty.innerHTML = '<div style="font-size:28px;margin-bottom:8px;">—</div>Nenhum resultado encontrado com estes filtros.';
+      grid.appendChild(empty);
+    }
+  } else if(empty){
+    empty.remove();
+  }
+}
+
+/* ==========================================================
+   COMPARE
+   ========================================================== */
+const compareSet = new Set();
+const compareTray = document.getElementById('compareTray');
+const compareTrayItems = document.getElementById('compareTrayItems');
+
+function toggleCompare(id, btn){
+  if(compareSet.has(id)){
+    compareSet.delete(id);
+  } else if(compareSet.size<3){
+    compareSet.add(id);
+  } else {
+    // flash warning
+    compareTray.animate([
+      {transform:'translateX(-50%) translateY(0) scale(1)'},
+      {transform:'translateX(-50%) translateY(0) scale(1.03)'},
+      {transform:'translateX(-50%) translateY(0) scale(1)'}
+    ],{duration:400, easing:'ease-out'});
+    return;
+  }
+  renderCompareState();
+}
+
+function renderCompareState(){
+  // highlight buttons
+  document.querySelectorAll('[data-compare]').forEach(b=>{
+    const active = compareSet.has(b.dataset.compare);
+    b.classList.toggle('selected', active);
+    b.innerHTML = active ? '<i data-lucide="check"></i>' : '<i data-lucide="plus"></i>';
+  });
+  lucide.createIcons();
+
+  // tray
+  if(compareSet.size===0){
+    compareTray.classList.remove('open');
+  } else {
+    compareTray.classList.add('open');
+    const items = [...compareSet].map(id=>{
+      const it = ALL_ITEMS_LOOKUP[id];
+      return `<div class="compare-item"><span>${it.title.split(' ').slice(0,5).join(' ')}${it.title.split(' ').length>5?'…':''}</span><button data-remove="${id}" aria-label="Remover"><i data-lucide="x"></i></button></div>`;
+    }).join('');
+    compareTrayItems.innerHTML = items;
+    lucide.createIcons();
+  }
+}
+
+compareTray.addEventListener('click',(e)=>{
+  const rm = e.target.closest('[data-remove]');
+  if(rm){
+    compareSet.delete(rm.dataset.remove);
+    renderCompareState();
+  }
+});
+
+document.getElementById('compareClear').addEventListener('click',()=>{
+  compareSet.clear();
+  renderCompareState();
+});
+
+document.getElementById('compareOpen').addEventListener('click',()=>{
+  if(compareSet.size<2){
+    alert('Selecione pelo menos 2 opções para comparar.');
+    return;
+  }
+  openCompareModal();
+});
+
+function openCompareModal(){
+  const items = [...compareSet].map(id=>ALL_ITEMS_LOOKUP[id]);
+  const modal = document.getElementById('compareModal');
+  const table = document.getElementById('compareTable');
+  const cols = items.length;
+  const gridCol = `200px repeat(${cols},1fr)`;
+  const row = (label, cells, isScore=false)=>`
+    <div class="row" style="grid-template-columns:${gridCol}">
+      <div class="cell label">${label}</div>
+      ${cells.map(v=>`<div class="cell">${isScore?`<div class="compare-score"><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`:v}</div>`).join('')}
+    </div>`;
+  const head = `
+    <div class="row head" style="grid-template-columns:${gridCol}">
+      <div class="cell"></div>
+      ${items.map(it=>`<div class="cell">${it.title}</div>`).join('')}
+    </div>`;
+  const rows = [
+    head,
+    row('Categoria', items.map(i=>`<span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);font-weight:600">${i.category}</span>`)),
+    row('Aderência', items.map(i=>i.adherence), true),
+    row('Risco', items.map(i=>i.risk||'—')),
+    row('Custo', items.map(i=>i.cost||'—')),
+    row('Tempo', items.map(i=>i.time||'—')),
+    row('Renda', items.map(i=>i.income||i.model||'—')),
+    row('Resumo', items.map(i=>`<span style="color:var(--text-soft)">${i.reason}</span>`))
+  ];
+  table.innerHTML = rows.join('');
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('compareModal').addEventListener('click',(e)=>{
+  if(e.target.id==='compareModal') closeModal();
+});
+function closeModal(){
+  document.getElementById('compareModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    closeModal();
+    document.getElementById('nav').classList.remove('mobile-open');
+  }
+});
+
+/* ==========================================================
+   NAV BEHAVIOR
+   ========================================================== */
+const nav = document.getElementById('nav');
+const navTabs = document.querySelectorAll('.nav-tab');
+const sectionIds = ['hero','perfil','leitura','zero','historico','pessoais','renda','ousadas','ranking','reco'];
+
+navTabs.forEach(t=>{
+  t.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const target = document.getElementById(t.dataset.target);
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    nav.classList.remove('mobile-open');
+  });
+});
+
+document.getElementById('navToggle').addEventListener('click',()=>{
+  nav.classList.toggle('mobile-open');
+});
+
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY>8);
+  let active = 'hero';
+  for(const id of sectionIds){
+    const el = document.getElementById(id);
+    if(!el) continue;
+    const rect = el.getBoundingClientRect();
+    if(rect.top <= 140) active = id;
+  }
+  navTabs.forEach(t=>t.classList.toggle('active', t.dataset.target===active));
+},{passive:true});
+
+/* ==========================================================
+   REVEAL ON SCROLL
+   ========================================================== */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+},{rootMargin:'0px 0px -60px 0px', threshold:0.05});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+// Also reveal cards
+function observeCards(){
+  document.querySelectorAll('.card:not(.observed)').forEach((c,idx)=>{
+    c.classList.add('observed');
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(14px)';
+    c.style.transition = `opacity .6s ${0.03*idx}s var(--ease), transform .6s ${0.03*idx}s var(--ease)`;
+    const cio = new IntersectionObserver((entries,obs)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          en.target.style.opacity='1';
+          en.target.style.transform='none';
+          obs.unobserve(en.target);
+        }
+      });
+    },{rootMargin:'0px 0px -40px 0px'});
+    cio.observe(c);
+  });
+}
+observeCards();
+
+/* ==========================================================
+   ICONS INIT
+   ========================================================== */
+lucide.createIcons();
+</script>
+</body>
+</html>
