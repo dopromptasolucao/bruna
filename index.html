@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 /* ==========================================================
    TOKENS & RESET
@@ -3075,126 +3074,6 @@ observeCards();
    ========================================================== */
 lucide.createIcons();
 
-/* ==========================================================
-   DOWNLOAD PAGE PDF
-   ========================================================== */
-function downloadPagePDF(){
-  const btn = document.querySelector('.download-card.dark .download-btn');
-  const original = btn.innerHTML;
-  btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Gerando…';
-  btn.disabled = true;
-
-  const top5 = DATA.ranking.slice(0,5);
-  const html = `
-  <html><head><meta charset="UTF-8"><style>
-    body{font-family:Georgia,serif;color:#261817;padding:48px;max-width:740px;margin:0 auto;font-size:14px;line-height:1.6}
-    h1{font-size:36px;font-weight:700;margin:0 0 4px;letter-spacing:-0.02em}
-    h2{font-size:16px;font-weight:700;color:#735736;margin:28px 0 8px;letter-spacing:0.05em;text-transform:uppercase;border-bottom:1px solid #d7d0c5;padding-bottom:6px}
-    h3{font-size:15px;font-weight:600;margin:14px 0 4px}
-    p{margin:4px 0 10px;color:#5B4632}
-    ul{margin:4px 0 12px;padding-left:20px}
-    li{margin-bottom:5px;color:#5B4632}
-    .meta{font-size:12px;color:#8A7A62;margin-bottom:24px}
-    .card{border:1px solid #e0d9ce;border-radius:8px;padding:16px 20px;margin-bottom:12px;background:#f5f3ee}
-    .card h3{margin:0 0 4px;font-size:15px}
-    .card p{margin:0;font-size:13px}
-    .rank{font-size:28px;font-weight:700;color:#735736;display:inline-block;min-width:44px}
-    .row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
-    .reco-grid{display:flex;gap:12px;flex-direction:column}
-    .reco-card{border:1px solid #d0c9be;border-radius:8px;padding:16px 20px;background:#f9f7f2}
-    .reco-card.bold{background:#402A17;color:#F4EFE5}
-    .reco-card.bold p{color:rgba(244,239,229,0.8)}
-    .tag{font-size:10px;background:#402A17;color:#F4EFE5;padding:2px 8px;border-radius:99px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;display:inline-block;margin-bottom:6px}
-    .footer{margin-top:40px;padding-top:16px;border-top:1px solid #d7d0c5;font-size:11px;color:#8A7A62}
-  </style></head><body>
-  <h1>Análise Vocacional</h1>
-  <p class="meta">Bruna &nbsp;·&nbsp; 31 anos &nbsp;·&nbsp; Comunicação Organizacional &nbsp;·&nbsp; Documento consolidado</p>
-
-  <h2>Perfil</h2>
-  <p>Pessoa profundamente relacional, contemplativa e sensível, com forte inclinação ao cuidado, à escuta e à criação de experiências humanas significativas.</p>
-  <ul>
-    <li><strong>Energiza:</strong> Escuta, acolhimento, ambiência, propósito e vínculo humano real</li>
-    <li><strong>Drena:</strong> Pressão constante, pressa, solidão profissional e tarefas numéricas</li>
-    <li><strong>Direção:</strong> Comunicação humana, hospitalidade, formação, cuidado e bem-estar</li>
-    <li><strong>Ambiente ideal:</strong> Equipes pequenas, propósito claro, hospitalidade</li>
-  </ul>
-
-  <h2>Interesses percebidos</h2>
-  <ul>
-    <li>Movimento corporal, bem-estar e consciência do corpo</li>
-    <li>Escrita, reflexão e organização de pensamentos</li>
-    <li>Conversas profundas, escuta e vulnerabilidade segura</li>
-    <li>Comunicação com sentido e ambientes acolhedores</li>
-    <li>Fé cristã, serviço e possibilidade ministerial</li>
-  </ul>
-
-  <h2>Áreas vocacionais com maior aderência</h2>
-  <ul>
-    <li>Comunicação relacional e institucional</li>
-    <li>Experiência do cliente e hospitalidade</li>
-    <li>Facilitação de grupos, acolhimento e comunidade</li>
-    <li>Projetos de fé, formação e serviço</li>
-    <li>Bem-estar corporal e práticas de presença</li>
-  </ul>
-
-  <h2>Top 5 — Carreiras com maior aderência</h2>
-  ${top5.map((r,i)=>`
-  <div class="row">
-    <span class="rank">${String(i+1).padStart(2,'0')}</span>
-    <div class="card" style="flex:1;margin:0">
-      <h3>${r.name}</h3>
-      <p>${r.why}</p>
-    </div>
-  </div>`).join('')}
-
-  <h2>Três direções finais</h2>
-  <div class="reco-grid">
-    <div class="reco-card">
-      <div class="tag">Conservador</div>
-      <h3>Coordenadora de experiência em hospitalidade</h3>
-      <p>É o caminho mais seguro. Parte de algo que ela já conhece, não exige ruptura brusca e permite reorganizar sua atuação para um lugar mais humano e menos centrado em números.</p>
-      <p style="font-size:11px;color:#8A7A62;margin-top:8px">Retorno em 0–3 meses · Baixo risco</p>
-    </div>
-    <div class="reco-card bold">
-      <div class="tag" style="background:rgba(244,239,229,0.2)">Equilibrado · Prioridade estratégica</div>
-      <h3 style="color:#F4EFE5">Analista de comunicação em organização com propósito</h3>
-      <p>O melhor ponto de equilíbrio entre identidade, sustentabilidade e futuro. Aproveita a formação, preserva a dimensão relacional e abre espaço para equipe, clareza e sentido.</p>
-      <p style="font-size:11px;color:rgba(244,239,229,0.5);margin-top:8px">Retorno em 2–6 meses</p>
-    </div>
-    <div class="reco-card">
-      <div class="tag">Ousado</div>
-      <h3>Proposta autoral de experiências de presença</h3>
-      <p>Entre as ideias ousadas, a mais coerente com o conjunto do perfil. Deve começar como experimento pequeno, sem pressa e com testes reais de aderência.</p>
-      <p style="font-size:11px;color:#8A7A62;margin-top:8px">Horizonte de 12–24 meses · Alto potencial</p>
-    </div>
-  </div>
-
-  <h2>Síntese final</h2>
-  <p>O perfil aponta menos para carreiras técnicas, frias ou altamente pressionadas, e <em>mais para trabalhos em que Bruna possa unir comunicação, cuidado, experiência humana, ambiente acolhedor, equipe e propósito.</em></p>
-
-  <div class="footer">Análise Vocacional Consolidada · Bruna · documento de leitura</div>
-  </body></html>`;
-
-  const el = document.createElement('div');
-  el.innerHTML = html;
-  document.body.appendChild(el);
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  el.style.top = '0';
-
-  html2pdf().set({
-    margin: 0,
-    filename: 'analise_vocacional_pagina_bruna.pdf',
-    image: {type:'jpeg', quality:0.98},
-    html2canvas: {scale:2, useCORS:true},
-    jsPDF: {unit:'mm', format:'a4', orientation:'portrait'}
-  }).from(el).save().then(()=>{
-    document.body.removeChild(el);
-    btn.innerHTML = original;
-    btn.disabled = false;
-    lucide.createIcons();
-  });
-}
 </script>
 </body>
 </html>
