@@ -595,7 +595,7 @@ a{color:inherit;text-decoration:none}
 }
 .voc-block.primary .voc-head{color:rgba(244,239,229,0.7)}
 .voc-block.primary ul li{color:rgba(244,239,229,0.88)}
-.voc-block.primary ul li::before{background:var(--c-sand)}
+.voc-block.primary ul li::before{background:transparent;color:rgba(244,239,229,0.9)}
 .voc-head{
   display:flex;align-items:center;gap:10px;
   font-size:11px;font-weight:700;letter-spacing:0.16em;
@@ -2727,7 +2727,7 @@ function renderRadar(){
   const cx = 200, cy = 200, R = 140;
   const n = RADAR_DATA.length;
   const levels = 4;
-  let svg = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-label="Radar do perfil">`;
+  let svg = `<svg viewBox="-80 -30 560 460" xmlns="http://www.w3.org/2000/svg" aria-label="Radar do perfil">`;
   // concentric polygons
   for(let l=1;l<=levels;l++){
     const r = (R/levels)*l;
